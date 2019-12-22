@@ -1,117 +1,20 @@
 /*
  * Dreaded Pirates Theme
+ *          by Brian C. Ferrari
  *
- * To be used with Atom Dark UI & One Dark Syntax
- *
- * When altering refer to above UI and Syntax source code
+ * To be used for personal website.
  */
 
+@blue  : hsl(212, 100%, 25%);
+@gold  : hsl( 55, 100%, 60%);
+@purple: hsl(275, 100%, 10%);
+@green : hsl(115, 100%, 40%);
+@pink  : hsl(310, 100%, 50%);
+@orange: hsl( 25, 100%, 45%);
+@yellow: hsl( 48, 100%, 35%);
 
 
-.tree-view
-{
-//Color of tree view (directory tree)
-  background-color: hsl(212, 100%, 25%);//blue
-
-//Color of selected (in use) file in tree viewer
-  .selected:before
-  {
-    background-color: hsla(55, 100%, 60%, 0.75);//gold 75% opacity
-  }
-
-}
-
-
-
-atom-text-editor
-{
-//foreground text color and background color
-  color: whitesmoke;
-  background-color: hsl(275, 100%, 10%);//purple
-
-//Color of cursor, and makes it pulse rather than blink
-  .cursor
-  {
-    border-color: green;
-    transition: opacity 0.5s;
-  }
-
-//Color of shading around bracket matcher
-  .bracket-matcher .region
-  {
-    background-color: hsl(48, 100%, 35%, 0.5);//yellow 50% opacity
-  }
-
-
-}
-
-
-
-atom-text-editor.editor
-{
-//Color of line cursor is currently on
-  .cursor-line
-  {
-    background-color: hsl(275, 100%, 25%);//purple
-  }
-
-//Color of comments
-  .syntax--comment
-  {
-    color: red;
-  }
-
-//Color of strings
-  .syntax--string
-  {
-    color: hsl(115, 100%, 40%);//green
-  }
-
-//Color of function definition
-  .syntax--function
-  {
-    color: hsl(55, 100%, 60%);//gold
-  }
-
-//Color of built in functions (import, for, else, if ...)
-  .syntax--keyword
-  {
-    color: hsl(55, 100%, 60%);//gold
-  }
-
-//Color of varibales with '.' after it (ie: os.--; sys.--)
-  .syntax--variable
-  {
-    color: hsl(310, 100%, 50%);//pink
-  }
-
-//Color of logic statments (in, and, not ...) in Python Only
-  .syntax--source.syntax--python
-  {
-    .syntax--keyword.syntax--operator.syntax--logical.syntax--python
-    {
-      color: hsl(55, 100%, 60%);//gold
-    }
-  }
-
-//Color and font-style of docstrings in Python Only
-  .syntax--string.syntax--quoted.syntax--double.syntax--block.syntax--python
-  {
-    color: silver;
-    font-style: bold;
-  }
-
-  //Color and font-style of Quotes(uses "") in Python Only
-    .syntax--string.syntax--quoted.syntax--double.syntax--python
-    {
-      color: hsl(25, 100%, 45%);//orange
-      font-style: bold;
-    }
-}
-
-//Customize Markdown Preview
-.markdown-preview.markdown-preview
-{
-  background-color: hsl(275, 100%, 10%);//purple
-  color: hsl(48, 100%, 35%);//yellow
+body {
+  color: @gold;
+  background-color: @purple;
 }
