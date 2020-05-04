@@ -3,7 +3,7 @@ title: "Electron Irradiation of Astrophysical Ice Analogues: Implications for th
 collection: talks
 type: "Talk"
 permalink: /talks/FLAVS2020
-venue: "UCF Orlando, Department of Material Science"
+venue: "2020 FL-AVS Symposium"
 date: 2020-03-10
 location: "Orlando, Florida"
 ---
