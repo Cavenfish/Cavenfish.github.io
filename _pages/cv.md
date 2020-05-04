@@ -6,3 +6,7 @@ author_profile: true
 redirect_from:
   - /resume
 ---
+
+<iframe
+      src="../files/BrianCV.pdf" width="60%" height="500" scrolling='yes'>
+</iframe>
