@@ -8,6 +8,9 @@ redirect_from:
   - /about.html
 ---
 
-I'm currently a Physics PhD candidate at the University of Central Florida, working under Dr. Christopher J. Bennett.
-
-My interests are in Computational Quantum Chemistry, Space Weathering, Surface Science and Radiation Transfer.
+I'm currently a Physics PhD candidate at the University of Central Florida (UCF),
+working under Dr. Christopher J. Bennett. I'm also the chairman of the student
+chapter of the American Vacuum Society (AVS) at UCF, visit our chapter
+[website](ucf.avs.org) to see all the exiting things we are up to. My research
+interests include irradiation of astrophysically relevant ices and quantum
+chemistry calculations of spectroscopic properties of gas-phase molecules.
