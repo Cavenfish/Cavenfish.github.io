@@ -3,6 +3,7 @@ title: "Undergraduate Teaching Assistant"
 collection: teaching
 type: "Grader"
 permalink: /teaching/UTA
+date: 2016
 venue: "University of Central Florida Physics Dept."
 location: "Orlando, Florida"
 ---

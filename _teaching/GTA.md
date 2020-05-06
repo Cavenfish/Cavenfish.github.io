@@ -3,6 +3,7 @@ title: "Graduate Teaching Assistant"
 collection: teaching
 type: "Instructor / Studio TA"
 permalink: /teaching/GTA
+date: 2019
 venue: "University of Central Florida Physics Dept."
 location: "Orlando, Florida"
 ---
