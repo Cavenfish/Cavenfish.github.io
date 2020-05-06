@@ -8,3 +8,6 @@ excerpt: 'A workshop on introdutory python programming.'
 venue: "UCF Raspberry Jam"
 location: "Orlando, Florida"
 ---
+
+This was a completely interactive live coding workshop, so there is not PowerPoint
+or other reference source to provide here. 
