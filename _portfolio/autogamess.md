@@ -22,4 +22,4 @@ AutoGAMESS is also able to generate line plots of vibrational frequency vs. IR/R
 
 IR Line Plot | Raman Line Plot
 -------------|----------------
-![](AG-test_H2O_B3LYP_CCD_ir-plot.png) | ![](AG-test_H2O_B3LYP_CCD_raman-plot.png)
+![](./images/AG-test_H2O_B3LYP_CCD_ir-plot.png) | ![](./images/AG-test_H2O_B3LYP_CCD_raman-plot.png)
