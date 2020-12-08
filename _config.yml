@@ -82,7 +82,7 @@ analytics:
 author:
   name             : "Brian C. Ferrari"
   avatar           : "me.jpg"
-  bio              : "Physics PhD Candidate at UCF. "
+  bio              : "Physics PhD Candidate at UCF."
   location         : "Orlando, Florida"
   employer         :
   pubmed           :
@@ -230,7 +230,7 @@ defaults:
   # _portfolio
   - scope:
       path: ""
-      type: portfolio
+      type: TEST
     values:
       layout: single
       author_profile: true
