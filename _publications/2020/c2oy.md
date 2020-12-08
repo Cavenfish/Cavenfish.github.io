@@ -3,7 +3,7 @@ title: "A computational investigation of the equilibrium geometries, energetics,
 collection: publications
 permalink: /publication/c2oy
 excerpt: 'This paper reports the predicted equilibrium geometries, energetics, vibrational frequencies, infrared intensities and Raman activities of C<sub>2</sub>O<sub>y</sub> (y = 3, 4) species'
-date: 2019-10-01
+date: 2020-10-28
 authors: "<font color='gold'><b>Brian C. Ferrari</b></font>, Christopher J. Bennett"
 venue: 'Molecular Physics'
 paperurl: 'https://www.tandfonline.com/doi/full/10.1080/00268976.2020.1837404?scroll=top&needAccess=true'
