@@ -12,5 +12,8 @@ main:
   - title: "Software"
     url: /portfolio/
 
+  - title: "Hobbies"
+    url: /hobbies/
+
   - title: "CV"
     url: /cv/
