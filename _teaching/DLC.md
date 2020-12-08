@@ -10,5 +10,6 @@ location: "Orlando, Florida"
 ---
 
 This talk was done partially through interactively using Raspberry Pi's and
-partially via PowerPoint presentation. For those interested in viewing the
-PowerPoint it can be found [here](https://docs.google.com/presentation/d/1nqbI2rB7Dbb8171RsIY7MKNESuGWY2CMrTiLt4mhhNs/edit?usp=sharing).
+partially via presentation. The presentation can be seen below, there is no audio file to go along with it though. 
+
+<iframe src="https://docs.google.com/presentation/d/e/2PACX-1vRZjOY9zHmKAHWeYrsj53qfTwCkkJkrfq05wDY_8MXUE1YtM29QJgkXnyCh2cGUezShjKwC76Q_MYhl/embed?start=true&loop=true&delayms=30000" frameborder="0" width="960" height="569" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
