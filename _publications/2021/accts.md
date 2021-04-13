@@ -3,7 +3,7 @@ title: "Role of Suprathermal Chemistry on the Evolution of Carbon Oxides and Org
 collection: publications
 permalink: /publication/accts
 excerpt: 'This is an account of laboratory-based experimental astrochemistry research'
-date: 2020-10-28
+date: 2021-02-08
 authors: "<font color='gold'><b>Brian C. Ferrari</b></font>, Katerina Slavicinska, Christopher J. Bennett"
 venue: 'Accounts of Chemical Research'
 paperurl: 'https://pubs.acs.org/doi/abs/10.1021/acs.accounts.0c00731'
