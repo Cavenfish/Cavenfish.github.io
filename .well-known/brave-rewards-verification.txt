@@ -1,0 +1,4 @@
+This is a Brave Rewards publisher verification file.
+
+Domain: cavenfish.github.io
+Token: 5715b9268d2e04bd17e62a3ba177ac21692e2b3187e475987c4878ee9e1370de
