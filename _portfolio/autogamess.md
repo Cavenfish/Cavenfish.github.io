@@ -511,6 +511,7 @@ The CSV file required by both functions must have the following format. The firs
 
 | <center> <span style="color:#1e0033">Species</span></center> | <center> <span style="color:#1e0033">Theory</span></center> | <center> <span style="color:#1e0033">Composite Methods</span></center> | <center> <span style="color:#1e0033">Basis Sets</span></center> | <center> <span style="color:#1e0033">External Basis Sets</span></center> | <center> <span style="color:#1e0033">Run Types</span></center> |
 | ------- | ------ | ----------------- | ---------- | ------------------- | --------- |
+|         |        |                   |            |                     |           |
 
 All lines after the header should give input as 1 item per column per line. As shown in the example bellow.
 
