@@ -20,7 +20,7 @@ This package was developed using `GAMESS VERSION = 20 APR 2017 (R1)`, it has als
 
 AutoGAMESS is also able to generate line plots of vibrational frequency vs. IR/Raman intensities. Generated plots will be titled with the molecule name in the file and the theory/basis set used for the calculation. Each symmetry group will be plotted in a different color, from either a default or user specified color list. The spectral line (sum of line broadening) will also be plotted in red with 50% transparency. An example is shown bellow using Lorentzian line broadening method with the default sigma option.
 
-<span style="color:#1e0033"> IR Line Plot </span> | Raman Line Plot
+<center> <span style="color:#1e0033"> IR Line Plot </span> </center> | <center> <span style="color:#1e0033"> Raman Line Plot </span> </center>
 -------------|----------------
 ![](../../images/AG-test_H2O_B3LYP_CCD_ir-plot.png) | ![](../../images/AG-test_H2O_B3LYP_CCD_raman-plot.png)
 
@@ -508,12 +508,14 @@ All user functions contain doc strings with examples and explanations of paramet
 
 The CSV file required by both functions must have the following format. The first line must be the header, written exactly as follows.
 
-| Species | Theory | Composite Methods | Basis Sets | External Basis Sets | Run Types |
+<center> <span style="color:#1e0033">
+| Species | Theory | Composite Methods | Basis Sets | External Basis Sets | Run Types |</center> </span>
 | ------- | ------ | ----------------- | ---------- | ------------------- | --------- |
 
 All lines after the header should give input as 1 item per column per line. As shown in the example bellow.
 
-| Species | Theory  | Composite Methods | Basis Sets | External Basis Sets | Run Types    |
+<center> <span style="color:#1e0033">
+| Species | Theory  | Composite Methods | Basis Sets | External Basis Sets | Run Types    |</center> </span>
 | ------- | ------  | ----------------- | ---------- | ------------------- | ---------    |
 | H2O     | B3LYP   | G32CCSD           | CCD        | may-cc-pVQZ         | Optimization |
 | NH3     | MP2     | G4MP2             | CCT        | aug-cc-pV7Z         | Hessian      |
@@ -528,7 +530,8 @@ AutoGAMESS assumes the user will be performing every possible combination of
 Theory and Basis Sets(internal and external) for every calculation type, across
 all species. Therefore repetition within columns will cause an error. If a user wishes to perform Optimization, Hessian and Raman calculations on water(H2O) using only B3LYP CCD the following should be in the CSV.
 
-| Species | Theory  | Composite Methods | Basis Sets | External Basis Sets | Run Types    |
+<center> <span style="color:#1e0033">
+| Species | Theory  | Composite Methods | Basis Sets | External Basis Sets | Run Types    |</center> </span>
 | ------- | ------  | ----------------- | ---------- | ------------------- | ---------    |
 | H2O     | B3LYP   |                   | CCD        |                     | Optimization |
 |         |         |                   |            |                     | Hessian      |
