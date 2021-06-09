@@ -3,7 +3,6 @@ title: "AutoGAMESS"
 excerpt: "This is a Python package I developed to automate GAMESS(US) Raman calculations"
 collection: portfolio
 ---
-# AutoGAMESS
 
 [![DOI](https://joss.theoj.org/papers/10.21105/joss.01612/status.svg)](https://doi.org/10.21105/joss.01612)
 
@@ -21,7 +20,7 @@ This package was developed using `GAMESS VERSION = 20 APR 2017 (R1)`, it has als
 
 AutoGAMESS is also able to generate line plots of vibrational frequency vs. IR/Raman intensities. Generated plots will be titled with the molecule name in the file and the theory/basis set used for the calculation. Each symmetry group will be plotted in a different color, from either a default or user specified color list. The spectral line (sum of line broadening) will also be plotted in red with 50% transparency. An example is shown bellow using Lorentzian line broadening method with the default sigma option.
 
-IR Line Plot | Raman Line Plot
+<span style="color:pink"> IR Line Plot </span> | Raman Line Plot
 -------------|----------------
 ![](../images/AG-test_H2O_B3LYP_CCD_ir-plot.png) | ![](../images/AG-test_H2O_B3LYP_CCD_raman-plot.png)
 
