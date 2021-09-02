@@ -27,13 +27,16 @@ author_profile: true
   <!-- If Google Scholar variable active,
        Then add link to authors Google Scholar account -->
   {% if site.author.googlescholar %}
-   <a href="{{site.author.googlescholar}}">my Google Scholar profile</a>
+   <a href="{{site.author.googlescholar}}"> Google Scholar </a>
   {% endif %}.
 
  {% endif %}
 
+
 <h3>Year of Publication</h3>
+
 <ul style="padding-left: 1em;">
+
 {% for post in site.publications reversed  %}
   {% capture this_year %}{{ post.date | date: "%Y" }}{% endcapture %}
   {% capture next_year %}{{ post.next.date | date: "%Y" }}{% endcapture %}
@@ -41,6 +44,7 @@ author_profile: true
 <li style="display: inline; float:left; list-style-type: none; margin-right: 1em; margin-bottom: 0em;"><strong><a href="#{{this_year}}">{{this_year}}</a></strong></li>
   {% endif %}
 {% endfor %}
+
 </ul>
 <div style="clear: both;"></div>
 
