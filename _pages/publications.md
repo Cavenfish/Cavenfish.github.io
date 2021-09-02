@@ -8,30 +8,14 @@ author_profile: true
 
 {% include base_path %}
 
- {% if site.author.googlescholar or site.author.dblp %}
+<!--
+  If Google Scholar variable active,
+  Then add link to authors Google Scholar account
+-->
+ {% if site.author.googlescholar %}
 
   You can also find my publications on
-  <!--
-    If Computer Science Bibliography (dblp) variable active,
-    Then add link to authors dblp account
-  -->
-  {% if site.author.dblp %}
-   <a href="{{site.author.dblp}}">my dblp profile</a>
-  {% endif %}
-  <!--
-    If dblp and Scholar variable active,
-    Then add the word and between links
-  -->
-  {% if site.author.googlescholar and site.author.dblp %}
-    and
-  {% endif %}
-  <!--
-    If Google Scholar variable active,
-    Then add link to authors Google Scholar account
-  -->
-  {% if site.author.googlescholar %}
-   <a href="{{site.author.googlescholar}}"> Google Scholar </a>
-  {% endif %}.
+  <a href="{{site.author.googlescholar}}"> Google Scholar</a>.
 
  {% endif %}
 
