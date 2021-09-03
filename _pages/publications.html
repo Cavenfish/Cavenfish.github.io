@@ -70,9 +70,9 @@ author_profile: true
   <!-- If not last loop, and this year is new
        then, make header and close/open <ul> -->
   {% if this_year != next_year %}
-  </ul>
-  <h2 id="{{next_year}}">{{next_year}}</h2>
-  <ul>
+    </ul>
+    <h2 id="{{next_year}}">{{next_year}}</h2>
+    <ul>
   {% endif %}
   {% endif %}
 {% endfor %}
