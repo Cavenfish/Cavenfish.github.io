@@ -26,10 +26,14 @@
       <a href="{{ base_path }}{{ post.url }}" rel="permalink"><b>{{ title }}</b></a><br/>
 
       <!-- Publication authors -->
-      {{ post.authors }}<br/>
+      <small>
+        {{ post.authors }}<br/>
+      </small>
 
       <!-- Publication journal -->
-      {% if post.venue-url %}<a href="{{ post.venue-url }}">{% endif %}<i>{{ post.venue }}</i>{% if post.venue-url %}</a>{% endif %}.
+      <small>
+        {% if post.venue-url %}<a href="{{ post.venue-url }}">{% endif %}<i>{{ post.venue }}</i>{% if post.venue-url %}</a>{% endif %}.
+      </small>
 
     </p>
   </article>
