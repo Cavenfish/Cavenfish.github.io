@@ -10,7 +10,7 @@ locale                   : "en-US"
 title                    : "Brian C. Ferrari"
 title_separator          : "-"
 name                     : &name "Brian Ferrari"
-description              : &description "Physics PhD Candidate at UCF"
+description              : &description "Chemistry PhD Candidate of Leiden University"
 url                      : https://Cavenfish.github.io
 baseurl                  : "" # the subpath of your site, e.g. "/blog"
 repository               : "Cavenfish/Cavenfish.github.io"
@@ -82,8 +82,8 @@ analytics:
 author:
   name             : "Brian C. Ferrari"
   avatar           : "me.jpg"
-  bio              : "Physics PhD Candidate at UCF."
-  location         : "Orlando, Florida"
+  bio              : "Chemistry PhD Candidate at Leiden University"
+  location         : "Leiden, Netherlands"
   employer         :
   pubmed           :
   googlescholar    : "https://scholar.google.com/citations?user=col48NcAAAAJ&hl=en"
