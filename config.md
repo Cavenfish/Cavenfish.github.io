@@ -21,8 +21,8 @@ ignore = [
 # RSS
 
 generate_rss = true
-website_title = "Your Title"
-website_descr = "Your Description"
-website_url = "https://your-path.com/"
+website_title = "Brian's Website"
+website_descr = "Brian's Academic Website"
+website_url = "https://cavenfish.github.io/"
 
 +++

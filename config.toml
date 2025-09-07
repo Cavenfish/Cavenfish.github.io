@@ -1,41 +1,12 @@
 [general]
-author = "Your Name Here"
-pronouns = "(they/them)"
-my_picture = "/assets/figs/me.png"
-my_bio = "Your short bio here."
+author = "Brian C. Ferrari"
+pronouns = "(he/him)"
+my_picture = "/assets/figs/me.jpg"
+my_bio = "Chemistry PhD Candidate at Leiden University"
 
 [links]
-scholar = [ "https://scholar.google.com", "fa fa-graduation-cap" ]
-github = [ "https://github.com", "fa fa-brands fa-github" ]
-orcid = [ "https://orcid.org", "fa fa-brands fa-orcid" ]
-linkedin = [ "https://www.linkedin.com", "fa fa-brands fa-linkedin" ]
-researchgate = [ "https://www.researchgate.net", "fa fa-brands fa-researchgate" ]
-bluesky = [ "https://bsky.app/", "fa fa-brands fa-bluesky" ]
-mastodon = [ "https://mastodon.social/explore", "fa fa-brands fa-mastodon" ]
-
-[team]
-order = [ "jane", "another", "more" ]
-
-[team.jane]
-alt = "Human"
-name = "A. Person"
-title = "Postdoc"
-bio = "A short bio here"
-email = "some.email@uni.edu"
-image = "/assets/figs/jane.png"
-
-[team.another]
-alt = "Human"
-name = "B. Person"
-title = "PhD Student"
-bio = "A short bio here"
-email = "some.email@uni.edu"
-image = "/assets/figs/another.png"
-
-[team.more]
-alt = "Human"
-name = "C. Person"
-title = "Undergraduate Student"
-bio = "A short bio here"
-email = "some.email@uni.edu"
-image = "/assets/figs/more.png"
+scholar = [ "https://scholar.google.com/citations?user=col48NcAAAAJ&hl=en", "fa fa-graduation-cap" ]
+github = [ "https://github.com/Cavenfish", "fa fa-brands fa-github" ]
+orcid = [ "https://orcid.org/0000-0002-7416-8629", "fa fa-brands fa-orcid" ]
+linkedin = [ "https://www.linkedin.com/in/brian-ferrari-001b8a163/", "fa fa-brands fa-linkedin" ]
+researchgate = [ "https://www.researchgate.net/profile/Brian-Ferrari-2?ev=hdr_xprf", "fa fa-brands fa-researchgate" ]

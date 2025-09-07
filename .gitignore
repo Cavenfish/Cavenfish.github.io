@@ -1,4 +1,4 @@
-_site/
+__site/
 package-lock.json
 node_modules/
 Manifest.toml
