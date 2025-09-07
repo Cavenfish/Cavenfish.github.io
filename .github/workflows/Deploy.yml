@@ -29,7 +29,6 @@ jobs:
           mkdir _css
           npm install
           node ./utils/js/compile_sass.js
-          node ./utils/js/generate_jdenticons.js
       - name: Build Franklin Site
         shell: julia --project=./ {0}
         run: |
