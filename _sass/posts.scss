@@ -1,0 +1,32 @@
+@use "vars";
+@use "../_assets/theme" as theme;
+
+.post {
+  width: 100%;
+  height: 100%;
+
+  .title {
+    color: theme.$secondary-foreground;
+
+    h1 {
+      margin-bottom: 5px;
+
+      a {
+        text-decoration: none;
+        color: theme.$secondary-foreground;
+      }
+    }
+  }
+
+  .blurb {
+    margin-left: 15px;
+
+    p {
+      padding-top: 0;
+      padding-bottom: 5px;
+      margin-top: 5px;
+      color: theme.$primary-foreground;
+      font-size: theme.$normal-font;
+    }
+  }
+}

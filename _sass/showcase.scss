@@ -1,0 +1,31 @@
+@use "vars";
+@use "../_assets/theme" as theme;
+
+.showcase {
+  width: 100%;
+  height: 100%;
+
+  .year-heading {
+    h2 {
+      border-bottom: none;
+      color: theme.$primary-foreground;
+    }
+  }
+
+  .showcase-title {
+    color: theme.$secondary-foreground;
+
+    a {
+      text-decoration: none;
+      color: theme.$secondary-foreground;
+    }
+  }
+
+  ul {
+    padding-left: 50px;
+  }
+
+  .showcase-body {
+    font-size: theme.$small-font;
+  }
+}
