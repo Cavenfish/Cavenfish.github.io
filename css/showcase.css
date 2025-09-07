@@ -1,0 +1,27 @@
+/*
+Variables to be used throughout site
+*/
+/*
+Set your website theme here.
+*/
+.showcase {
+  width: 100%;
+  height: 100%;
+}
+.showcase .year-heading h2 {
+  border-bottom: none;
+  color: #000000;
+}
+.showcase .showcase-title {
+  color: #b81149;
+}
+.showcase .showcase-title a {
+  text-decoration: none;
+  color: #b81149;
+}
+.showcase ul {
+  padding-left: 50px;
+}
+.showcase .showcase-body {
+  font-size: 14px;
+}
