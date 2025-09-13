@@ -4,6 +4,24 @@ Variables to be used throughout site
 /*
 Set your website theme here.
 */
+[data-theme=light] {
+  --primary-bg: #ffffff;
+  --secondary-bg: #7dd4db;
+  --tertiary-bg: #4fb9c1;
+  --primary-fg: #000000;
+  --secondary-fg: #9b4d5f;
+  --tertiary-fg: #b85b74;
+}
+
+[data-theme=dark] {
+  --primary-bg: #2e2c2c;
+  --secondary-bg: #10555a;
+  --tertiary-bg: #1c8991;
+  --primary-fg: #ffffff;
+  --secondary-fg: #df6dc2;
+  --tertiary-fg: #b925b2;
+}
+
 body {
   overflow: hidden;
 }
@@ -64,13 +82,13 @@ body {
   width: auto;
   padding: 10px;
   display: inline;
-  color: #000000;
-  background-color: #cebada;
+  color: var(--primary-fg);
+  background-color: var(--primary-bg);
   border: none;
   align-content: center;
 }
 .cover .cover-body .cover-button a {
-  color: #000000;
+  color: var(--primary-fg);
   font-size: 24px;
   text-decoration: none;
 }
@@ -84,13 +102,13 @@ body {
   width: auto;
   padding: 10px;
   display: inline;
-  color: #000000;
-  background-color: #cebada;
+  color: var(--primary-fg);
+  background-color: var(--primary-bg);
   border: none;
   align-content: center;
 }
 .cover .cover-nav .cover-button a {
-  color: #000000;
+  color: var(--primary-fg);
   font-size: 24px;
   text-decoration: none;
 }
