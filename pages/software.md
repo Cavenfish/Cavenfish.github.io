@@ -4,10 +4,10 @@ name = "Software"
 +++
 
 \software{
-    "YASS.jl",
-    "Yet Another Simulation Suite (YASS.jl). A simulation suite for atomic simulations in Julia.",
-    repo="https://github.com/Cavenfish/YASS.jl",
-    docs="https://cavenfish.github.io/YASS.jl/dev/"
+    "YetAnotherSimulationSuite.jl",
+    "A simulation suite for atomistic simulations in Julia.",
+    repo="https://github.com/Cavenfish/YetAnotherSimulationSuite.jl",
+    docs="https://cavenfish.github.io/YetAnotherSimulationSuite.jl/dev/"
 }
 
 \software{
