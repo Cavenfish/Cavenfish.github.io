@@ -1,4 +1,4 @@
-Sitemap: https://your-path.com/sitemap.xml
+Sitemap: https://cavenfish.github.io/sitemap.xml
 
 User-agent: *
 Disallow:
