@@ -11,6 +11,7 @@ Set your website theme here.
   --primary-fg: #000000;
   --secondary-fg: #036077;
   --tertiary-fg: #036077;
+  --link-color: #5f09af;
 }
 
 [data-theme=dark] {
@@ -20,11 +21,16 @@ Set your website theme here.
   --primary-fg: #ffffff;
   --secondary-fg: #77c3c9;
   --tertiary-fg: #77c3c9;
+  --link-color: #7fdde4;
 }
 
 body {
   overflow-x: hidden;
   background-color: var(--primary-bg);
+}
+body a:link {
+  color: var(--link-color);
+  text-decoration: none;
 }
 
 html {
@@ -160,7 +166,10 @@ html {
   position: relative;
 }
 .page-foot a {
-  text-decoration: none;
+  color: #a6a2a0;
+  text-decoration: underline;
+}
+.page-foot a:link {
   color: #a6a2a0;
   text-decoration: underline;
 }
