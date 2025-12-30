@@ -17,3 +17,9 @@ My blog is mostly a collection of random tutorials/guides on how to do things
     "A short guide on implementing the CVR thermostat in Julia.",
     "/pages/blog/coding/cvr_example.md"
 }
+
+\post{
+    "Pigeon Pictures",
+    "A collection of pictures I've taken of pigeons.",
+    "/pages/blog/gallery/pigeons.md"
+}
