@@ -1,0 +1,224 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="google-site-verification" content="9CIsKebPd-hNdMScya0EZx2Z_GtQ9g3yDXmpbgs2mrU" />
+
+    <link rel="stylesheet" href="/libs/highlight/styles/github.min.css">
+ 
+
+<link rel="stylesheet" href="/css/franklin.css" />
+<link rel="stylesheet" href="/css/icons.css" />
+<link rel="icon" href="/assets/avatar.svg" />
+
+<!-- Font Awesome Icons -->
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+/>
+
+
+<link rel="stylesheet" href="/css/nav.css" />
+<link rel="stylesheet" href="/css/sidebar.css" />
+<link rel="stylesheet" href="/css/cards.css" />
+<link rel="stylesheet" href="/css/showcase.css" />
+<link rel="stylesheet" href="/css/software.css" />
+<link rel="stylesheet" href="/css/posts.css" />
+<link rel="stylesheet" href="/css/gallery.css" />
+
+  
+   <title>Brian C. Ferrari's Website</title>  
+</head>
+<body>
+
+  
+    <div class="masthead">
+  <nav>
+    <div class="author-name-nav">
+      <li><a href="/">Brian C. Ferrari</a></li>
+    </div>
+    <a class="theme-switch" onclick="toggleTheme()">
+      <i id="theme-icon" class="fas fa-moon"></i>
+    </a>
+    <a class="burger-nav" onclick="myFunction()">
+      <i class="fa-2x fa fa-bars"></i>
+    </a>
+    <div class="desktop-nav"><li>
+  <a href="/pages/aboutMe">About Me</a>
+</li>
+
+<li>
+  <a href="/pages/software">Software</a>
+</li>
+
+<li>
+  <a href="/pages/blog">Blog</a>
+</li>
+
+</div>
+    <div id="hidden" class="mobile-nav"><li>
+  <a href="/pages/aboutMe">About Me</a>
+</li>
+
+<li>
+  <a href="/pages/software">Software</a>
+</li>
+
+<li>
+  <a href="/pages/blog">Blog</a>
+</li>
+
+</div>
+  </nav>
+</div>
+
+    <div class="academic-sidebar">
+  <div class="author_avatar"><img 
+    src="/assets/figs/me.jpg" 
+    class="author_avatar" 
+    alt="Brian C. Ferrari" 
+  /></div>
+
+  <h3>Brian C. Ferrari</h3>
+
+  <!-- Pronouns are a class -->
+  <p class="pronouns"> 
+    (he/him)
+  </p>
+
+  <!-- Bio is just text -->
+  Chemistry PhD Candidate at Leiden University
+  <br /><br />
+
+  <br><br>
+<li>
+  <a href="https://www.linkedin.com/in/brian-ferrari-001b8a163/" target=_blank>
+    <i class="fa fa-brands fa-linkedin" aria-hidden="true"></i>
+  </a>
+</li>
+<li>
+  <a href="https://orcid.org/0000-0002-7416-8629" target=_blank>
+    <i class="fa fa-brands fa-orcid" aria-hidden="true"></i>
+  </a>
+</li>
+<li>
+  <a href="https://www.researchgate.net/profile/Brian-Ferrari-2?ev=hdr_xprf" target=_blank>
+    <i class="fa fa-brands fa-researchgate" aria-hidden="true"></i>
+  </a>
+</li>
+<li>
+  <a href="https://github.com/Cavenfish" target=_blank>
+    <i class="fa fa-brands fa-github" aria-hidden="true"></i>
+  </a>
+</li>
+<li>
+  <a href="https://scholar.google.com/citations?user=col48NcAAAAJ&hl=en" target=_blank>
+    <i class="fa fa-graduation-cap" aria-hidden="true"></i>
+  </a>
+</li>
+
+</div>
+
+  
+<!-- Content appended here -->
+<div class="franklin-content">
+<h1 id="tips_and_tricks_for_julia_programming"><a href="#tips_and_tricks_for_julia_programming" class="header-anchor">Tips and Tricks for Julia programming</a></h1>
+<p>At this point there is a wealth of information for the Julia programming language. Perhaps one of the best sources &#40;outside of the official documentation or discourse forum&#41; is <a href="https://m3g.github.io/JuliaNotes.jl/stable/">JuliaNotes.jl</a>. Personally, I find that more available information is better and since I&#39;m a big fan of Julia, I&#39;ve decided to make my own contribution.</p>
+<p>Here I&#39;ll outline some basic, but at times lesser-known, tips and tricks for writing Julia code.</p>
+<h2 id="ternary_conditional_operator"><a href="#ternary_conditional_operator" class="header-anchor">Ternary Conditional Operator</a></h2>
+<p>Julia has the ternary operator for <code>if-else</code> statements. The best way to explain it is to show two equivalent blocks of code. First, one that uses <code>if-else</code></p>
+<pre><code class="language-julia">for i &#61; 1:10
+  if i &gt; 5
+    println&#40;&quot;big&quot;&#41;
+  else
+    println&#40;&quot;small&quot;&#41;
+  end
+end</code></pre>
+<p>This lengthy <code>if-else</code> statement can be replaced with a ternary operator while still preserving the logic in the code.</p>
+<pre><code class="language-julia">for i &#61; 1:10
+  i &gt; 5 ? println&#40;&quot;big&quot;&#41; : println&#40;&quot;small&quot;&#41;
+end</code></pre>
+<p>Within this ternary expression, the <code>?</code> operator denotes which boolean expression &#40;what comes before it&#41; is being evaluated. The <code>:</code> operator separates the <code>if</code> &#40;before the <code>:</code>&#41; and <code>else</code> &#40;after the <code>:</code>&#41; outcomes. This can help shrink lengthy code blocks, but it comes with the additional cost of increased code complexity. However, once familiar with the ternary operator, the complexity of the expression goes away. </p>
+<h2 id="short_circuit_expressions"><a href="#short_circuit_expressions" class="header-anchor">Short Circuit Expressions</a></h2>
+<p>In Julia the short circuit operators are <code>&amp;&amp;</code> &#40;<code>and</code> operator&#41;, and <code>||</code> &#40;<code>or</code> operator&#41;. The most basic use for them is conditional statements.</p>
+<pre><code class="language-julia">x &#61; 5
+
+if &#40;x &gt; 3&#41; &amp;&amp; &#40;x &lt; 6&#41;
+  println&#40;&quot;True&quot;&#41;
+end</code></pre>
+<p>In strictly-typed languages, these expressions can only evaluate to a boolean, as is the case in the example above. However, Julia is a loosely-typed language, which affords it the ability to return the last value in this expression. This becomes a powerful tool for simplifying conditional statements, although some argue that it unnecessarily increases the complexity of the code. Below I show how you can convert the <code>if</code> statement above into a one-line short circuit expression.</p>
+<pre><code class="language-julia">x &#61; 5
+
+&#40;x &gt; 3&#41; &amp;&amp; &#40;x &lt; 6&#41; &amp;&amp; println&#40;&quot;True&quot;&#41;</code></pre>
+<p>This expression is equivalent to the <code>if</code> statement; as such, it only prints <code>True</code> if both conditionals are satisfied &#40;in this case they are&#41;. Since both code blocks shown are equivalent, the choice for which to use comes down to personal preference &#40;or the repo style guide&#41;. I personally find it convenient to use these statements for <code>continue</code> conditionals within loops.</p>
+<pre><code class="language-julia">for i &#61; 1:10
+  i &#61;&#61; 5 &amp;&amp; continue
+  println&#40;i&#41;
+end</code></pre>
+<h2 id="pipes"><a href="#pipes" class="header-anchor">Pipes</a></h2>
+<p>If you are familiar with Bash scripting in Linux, then you will already be familiar with pipes. In Julia, the pipe operator is <code>|&gt;</code>. They can be used to redirect the output of something into another function. For example, if you have functions <code>foo</code> and <code>bar</code> such that you can run <code>bar&#40;foo&#40;x&#41;&#41;</code>, then you can also rewrite this as <code>foo&#40;x&#41; |&gt; bar</code>. A handy use case for pipes is to avoid defining multiple temporary variables, while also avoiding hard-to-read nested calls.</p>
+<pre><code class="language-julia">foo&#40;x&#41; &#61; 2 * sin&#40;x&#41;
+bar&#40;x&#41; &#61; 3 * x^2
+
+# Several tmp vars
+tmp1 &#61; rand&#40;&#41;
+tmp2 &#61; foo&#40;tmp1&#41;
+x    &#61; bar&#40;tmp2&#41;
+
+# Multiple nested calls
+x &#61; bar&#40;foo&#40;rand&#40;&#41;&#41;&#41;
+
+# One clean easy to read line
+x &#61; rand&#40;&#41; |&gt; foo |&gt; bar</code></pre>
+<h2 id="anonymous_functions"><a href="#anonymous_functions" class="header-anchor">Anonymous Functions</a></h2>
+<p>An anonymous function is &#40;as the name suggests&#41; a function without a name. In Julia, these are done by using the <code>-&gt;</code> operator. A simple <code>f&#40;x&#41; &#61; 2 * x^2</code> function can be anonymized as <code>x -&gt; 2 * x^2</code>; however, this example does not properly showcase the value of these anonymous functions. Although they can be used in numerous ways, they are most often used in two ways.</p>
+<ol>
+<li><p>Alongside pipes</p>
+</li>
+</ol>
+<p>Sometimes you want to pipe output into a function that takes multiple arguments. In those cases, you need to couple a pipe and an anonymous function. The example below shows a simple version of this use case.</p>
+<pre><code class="language-julia">foo&#40;x&#41;   &#61; 6 * x^2
+bar&#40;x,y&#41; &#61; x^2 - y^2
+
+z &#61; rand&#40;&#41; |&gt; foo |&gt; &#40;x -&gt; bar&#40;x, 6&#41;&#41;</code></pre>
+<p>In this example the output of <code>foo</code> is piped into an anonymous function &#40;<code>x -&gt; bar&#40;x, 6&#41;</code>&#41; which passes the output into <code>bar</code> alongside an additional argument.</p>
+<ol start="2">
+<li><p>Within function calls</p>
+</li>
+</ol>
+<p>Many built-in functions take an expression/function as an argument, for instance, <code>filter</code> and <code>find</code> take expressions that evaluate to booleans as arguments.</p>
+<pre><code class="language-julia">x &#61; rand&#40;50&#41;
+
+filter&#40;e -&gt; e &gt; 0.5, x&#41;</code></pre>
+<p>The code block above uses the anonymous function <code>e -&gt; e &gt; 0.5</code> as the expression argument for <code>filter</code>, which in this case filters out the values larger than 0.5 from the array <code>x</code>. </p>
+<h2 id="base_functions_with_custom_types"><a href="#base_functions_with_custom_types" class="header-anchor">Base Functions with Custom Types</a></h2>
+<p>This feature involves Julia&#39;s multiple dispatch, which is simply when multiple functions have the same name but different arguments. This allows you to write custom base functions for custom types. This is easier to understand through an example. </p>
+<pre><code class="language-Julia">struct Point&#123;F &lt;: Float64&#125;
+  x::F
+  y::F
+  z::F
+end
+
+function Base.show&#40;io::IO, point::Point&#41;
+  println&#40;io, &quot;&#40;x,y,z&#41; &#61; &#40;&#36;&#40;point.x&#41;,&#36;&#40;point.y&#41;,&#36;&#40;point.z&#41;&#41;&quot;&#41;
+end</code></pre>
+<p>The example above shows how to make a custom <code>show</code> function for a custom type <code>Point</code>. This is called &quot;extending&quot; the <code>show</code> function. This makes it so that when you display variables of the type <code>Point</code>, they will be displayed using the custom <code>show</code> function above. This means that when instantiating a variable <code>p &#61; Point&#40;1.0, 2.0, 3.0&#41;</code> in the <code>repl</code>, the following output will be <code>&#40;x,y,z&#41; &#61; &#40;1.0,2.0,3.0&#41;</code>.</p>
+<p>This can be done to all functions you have access to within your Julia code,  even those from other imported packages. An important consideration here is to make sure you avoid &quot;type piracy&quot;, where you extend a function on types that you did not define. For example,</p>
+<pre><code class="language-julia">Base.show&#40;io::IO, f::Float64&#41; &#61; println&#40;io, &quot;This is type piracy&quot;&#41;</code></pre>
+<p>extending <code>show</code> on the <code>Float64</code> type &#40;which would not be extending but rather &quot;redefining&quot;, since it already exists&#41; is a case of type piracy.  This is considered bad practice since it can cause unexpected behavior within your code, or someone else&#39;s code if they import your code.</p>
+<div class="page-foot">
+    | Website built with <a href="https://franklinjl.org/">Franklin.jl</a> |
+    <a href="/sitemap.xml">Sitemap</a> |
+</div>
+</div><!-- CONTENT ENDS HERE -->
+    
+    
+        <script src="/libs/highlight/highlight.min.js"></script>
+<script>hljs.highlightAll();hljs.configure({tabReplace: '    '});</script>
+
+    
+    <script src="/libs/buttons/nav.js"></script>
+    <script src="/libs/buttons/theme.js"></script>
+  </body>
+</html>
