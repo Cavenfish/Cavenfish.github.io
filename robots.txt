@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /sitemap.xml
+Sitemap: https://cavenfish.github.io/sitemap.xml
