@@ -20,6 +20,7 @@ ignore = [
 
 # RSS
 
+generate_sitemap = false
 generate_rss = true
 website_title = "Brian C. Ferrari's Website"
 website_descr = "A personal blog about random things."
