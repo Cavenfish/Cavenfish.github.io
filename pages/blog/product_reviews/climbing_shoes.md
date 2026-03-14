@@ -4,7 +4,9 @@ cover = false
 
 # Five Ten NIAD
 
-I love this shoe, and would recommend it.
+I love this shoe, and would recommend it. Only disclaimer for it is that
+the shoe will stink like crazy. Something about the material makes the inside
+of the shoe reek.
 
 - Solid heel
 - Very comfortable 
