@@ -4,6 +4,13 @@ name = "Software"
 +++
 
 \software{
+    "Bonança",
+    "A Rust library for building DeFi bots.",
+    repo="https://github.com/Cavenfish/bonanca",
+    docs="https://cavenfish.github.io/bonanca/"
+}
+
+\software{
     "YetAnotherSimulationSuite.jl",
     "A simulation suite for atomistic simulations in Julia.",
     repo="https://github.com/Cavenfish/YetAnotherSimulationSuite.jl",
