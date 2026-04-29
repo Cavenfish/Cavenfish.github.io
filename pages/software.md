@@ -4,6 +4,12 @@ name = "Software"
 +++
 
 \software{
+    "Rejection Roulette",
+    "A cross-pltform desktop app for tracking job applications.",
+    repo="https://github.com/Cavenfish/RejectionRoulette"
+}
+
+\software{
     "Bonança",
     "A Rust library for building DeFi bots.",
     repo="https://github.com/Cavenfish/bonanca",
