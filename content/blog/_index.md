@@ -3,7 +3,7 @@ title = "Blog"
 sort_by = "date"
 template = "article_list.html"
 page_template = "article.html"
-paginate_by = 5
+paginate_by = 25
 +++
 
 My blog is mostly a collection of random tutorials/guides on how to do things
