@@ -1,0 +1,3 @@
+[submodule "themes/xuan"]
+	path = themes/xuan
+	url = https://github.com/jhq223/xuan.git
