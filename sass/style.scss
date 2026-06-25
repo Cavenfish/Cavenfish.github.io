@@ -1,0 +1,218 @@
+@import "../themes/xuan/sass/style.scss";
+
+@mixin theme-variables {
+  :root {
+    @content ("light");
+  }
+
+  [data-theme="dark"] {
+    @content ("dark");
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      @content ("dark");
+    }
+  }
+}
+
+@include theme-variables using ($theme) {
+  @if $theme == "dark" {
+    // COHESIVE PASTEL DARK VARIANT
+    --accent-color: rgb(167 139 250); // Lilac Purple base accent
+    --bg-color: color-mix(
+      in srgb,
+      var(--accent-color) 8%,
+      #0f0b14
+    ); // Deep velvet night
+    --bg-overlay: linear-gradient(rgb(15 11 20 / 0.92), rgb(15 11 20 / 0.92));
+    --fg-color: rgb(233 229 239); // Bright ash-lavender text
+    --fg-contrast: rgb(15 11 20);
+    --fg-muted-1: rgb(233 229 239 / 0.04);
+    --fg-muted-2: rgb(233 229 239 / 0.08);
+    --fg-muted-3: rgb(233 229 239 / 0.18);
+    --fg-muted-4: rgb(233 229 239 / 0.45);
+    --fg-muted-5: rgb(233 229 239 / 0.65);
+    --glass-bg: rgb(24 19 31 / 0.75);
+
+    // Functional Pastels (Neon/High-Contrast Dark Variants)
+    --blue-fg: rgb(147 197 253); // Soft sky
+    --brown-fg: rgb(217 184 154); // Muted gold-brown
+    --green-fg: rgb(45 212 191); // Glowing Pastel Teal
+    --purple-fg: rgb(192 132 252); // Vibrant Lavender
+    --red-fg: rgb(244 114 182); // Glowing Pastel Pink
+    --yellow-fg: rgb(253 224 71); // Soft pastel yellow
+
+    // Contextual Mappings for your theme layout rules
+    --pink-fg: var(--red-fg);
+    --teal-fg: var(--green-fg);
+
+    // Alpha Background States
+    --blue-bg: rgb(from var(--blue-fg) r g b / var(--color-opacity));
+    --brown-bg: rgb(from var(--brown-fg) r g b / var(--color-opacity));
+    --green-bg: rgb(from var(--green-fg) r g b / var(--color-opacity));
+    --purple-bg: rgb(from var(--purple-fg) r g b / var(--color-opacity));
+    --red-bg: rgb(from var(--red-fg) r g b / var(--color-opacity));
+    --yellow-bg: rgb(from var(--yellow-fg) r g b / var(--color-opacity));
+    --pink-bg: rgb(from var(--pink-fg) r g b / var(--color-opacity));
+    --teal-bg: rgb(from var(--teal-fg) r g b / var(--color-opacity));
+    --accent-color-alpha: rgb(
+      from var(--accent-color) r g b / var(--color-opacity)
+    );
+
+    color-scheme: dark;
+  } @else {
+    // PASTEL LIGHT THEME (PURPLE, PINK, TEAL)
+    --accent-color: rgb(139 92 246); // Medium Pastel Purple
+    --bg-color: color-mix(
+      in srgb,
+      var(--accent-color) 4%,
+      #faf8fe
+    ); // Soft tinted lavender-white
+    --bg-overlay: linear-gradient(
+      rgb(250 248 254 / 0.85),
+      rgb(250 248 254 / 0.85)
+    );
+    --fg-color: rgb(42 36 56); // Deep rich plum text for strong contrast
+    --fg-contrast: rgb(255 255 255);
+    --fg-muted-1: rgb(42 36 56 / 0.04);
+    --fg-muted-2: rgb(42 36 56 / 0.08);
+    --fg-muted-3: rgb(42 36 56 / 0.16);
+    --fg-muted-4: rgb(42 36 56 / 0.5);
+    --fg-muted-5: rgb(42 36 56 / 0.65);
+    --glass-bg: rgb(245 241 252 / 0.75);
+
+    // Functional Pastels (Saturated Light Variants)
+    --blue-fg: rgb(37 99 235);
+    --brown-fg: rgb(120 74 38);
+    --green-fg: rgb(20 184 166); // True Pastel Teal
+    --purple-fg: rgb(124 58 237); // Rich Purple
+    --red-fg: rgb(236 72 153); // True Pastel Pink
+    --yellow-fg: rgb(180 130 3);
+
+    // Contextual Mappings for layout rules
+    --pink-fg: var(--red-fg);
+    --teal-fg: var(--green-fg);
+
+    --blue-bg: rgb(from var(--blue-fg) r g b / var(--color-opacity));
+    --brown-bg: rgb(from var(--brown-fg) r g b / var(--color-opacity));
+    --green-bg: rgb(from var(--green-fg) r g b / var(--color-opacity));
+    --purple-bg: rgb(from var(--purple-fg) r g b / var(--color-opacity));
+    --red-bg: rgb(from var(--red-fg) r g b / var(--color-opacity));
+    --yellow-bg: rgb(from var(--yellow-fg) r g b / var(--color-opacity));
+    --pink-bg: rgb(from var(--pink-fg) r g b / var(--color-opacity));
+    --teal-bg: rgb(from var(--teal-fg) r g b / var(--color-opacity));
+    --accent-color-alpha: rgb(
+      from var(--accent-color) r g b / var(--color-opacity)
+    );
+
+    // CONTRAST COLOR CONFIGURATION
+    --l: clamp(0, (l / 0.623 - 1) * -infinity, 1);
+    --a: calc(var(--l) + (var(--dim-opacity) * (1 - var(--l))));
+    --contrast-color: oklch(from var(--accent-color) var(--l) 0 h / var(--a));
+
+    // CONTAINERS
+    --container-width: 45rem;
+
+    // CORNERS
+    --rounded-corner: 0.75rem;
+    --rounded-corner-small: 0.5rem;
+
+    // FILTERS
+    --blur: saturate(1.8) blur(0.75rem);
+
+    // FONT SIZES
+    --font-size-xx-small: 0.625rem;
+    --font-size-x-small: 0.75rem;
+    --font-size-small: 0.875rem;
+    --font-size-medium: 1rem;
+    --font-size-large: 1.25rem;
+    --font-size-x-large: 1.5rem;
+    --font-size-xx-large: 2rem;
+    --font-size-xxx-large: 3rem;
+
+    // FONT SIZES (RELATIVE)
+    --font-size-xx-small-em: 0.625em;
+    --font-size-x-small-em: 0.75em;
+    --font-size-small-em: 0.875em;
+    --font-size-medium-em: 1em;
+    --font-size-large-em: 1.25em;
+    --font-size-x-large-em: 1.5em;
+    --font-size-xx-large-em: 2em;
+    --font-size-xxx-large-em: 3em;
+
+    // FONTS
+    --font-system-ui: system-ui, sans-serif;
+    --font-transitional:
+      Charter, "Bitstream Charter", "Sitka Text", Cambria, serif;
+    --font-old-style:
+      "Iowan Old Style", "Palatino Linotype", "URW Palladio L", P052, serif;
+    --font-humanist:
+      Seravek, "Gill Sans Nova", Ubuntu, Calibri, "DejaVu Sans",
+      source-sans-pro, sans-serif;
+    --font-geometric-humanist:
+      Avenir, Montserrat, Corbel, "URW Gothic", source-sans-pro, sans-serif;
+    --font-classical-humanist:
+      Optima, Candara, "Noto Sans", source-sans-pro, sans-serif;
+    --font-neo-grotesque:
+      Inter, Roboto, "Helvetica Neue", "Arial Nova", "Nimbus Sans", Arial,
+      sans-serif;
+    --font-monospace-slab-serif: "Nimbus Mono PS", "Courier New", monospace;
+    --font-monospace-code:
+      ui-monospace, "Cascadia Code", "Source Code Pro", Menlo, Consolas,
+      "DejaVu Sans Mono", monospace;
+    --font-industrial:
+      Bahnschrift, "DIN Alternate", "Franklin Gothic Medium",
+      "Nimbus Sans Narrow", sans-serif-condensed, sans-serif;
+    --font-rounded-sans:
+      ui-rounded, "Hiragino Maru Gothic ProN", Quicksand, Comfortaa, Manjari,
+      "Arial Rounded MT", "Arial Rounded MT Bold", Calibri, source-sans-pro,
+      sans-serif;
+    --font-slab-serif:
+      Rockwell, "Rockwell Nova", "Roboto Slab", "DejaVu Serif", "Sitka Small",
+      serif;
+    --font-antique:
+      Superclarendon, "Bookman Old Style", "URW Bookman", "URW Bookman L",
+      "Georgia Pro", Georgia, serif;
+    --font-didone:
+      Didot, "Bodoni MT", "Noto Serif Display", "URW Palladio L", P052, Sylfaen,
+      serif;
+    --font-handwritten:
+      "Segoe Print", "Bradley Hand", Chilanka, TSCu_Comic, casual, cursive;
+    --font-emoji:
+      "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
+      "Noto Color Emoji";
+
+    // OPACITY
+    --color-opacity: 0.12; // Slighly boosted for light pastels visibility
+    --dim-opacity: 0.8;
+    --disabled-opacity: 0.6;
+
+    // SHADOWS
+    --edge-highlight: inset 0 0.0625rem 0 rgb(255 255 255 / 0.1);
+    --shadow:
+      0 0 0 0.0625rem rgb(0 0 0 / 0.02),
+      0 0.0625rem 0.1875rem 0.0625rem rgb(42 36 56 / 0.05),
+      0 0.125rem 0.375rem 0.125rem rgb(42 36 56 / 0.02);
+    --shadow-raised:
+      0 0 0 0.0625rem rgb(42 36 56 / 0.04),
+      0 0.125rem 0.375rem 0.125rem rgb(42 36 56 / 0.08),
+      0 0.25rem 0.75rem 0.25rem rgb(42 36 56 / 0.04);
+    --shadow-glass: 0 0.75rem 1.5rem -1rem rgb(42 36 56 / 0.3);
+    --shadow-glow:
+      0 0 0 0.0625rem var(--accent-color-alpha),
+      0 0.125rem 0.375rem 0.125rem var(--accent-color-alpha),
+      0 0.25rem 1.5rem 0.25rem var(--accent-color-alpha);
+    --text-shadow-glow:
+      var(--accent-color-alpha) 0 0 0.25rem, var(--accent-color) 0 0 0.75rem;
+
+    // STATES
+    --hover: scale(1.05);
+    --active: scale(0.96);
+
+    // TRANSITIONS
+    --transition: 0.2s;
+    --transition-longer: 0.4s;
+    --transition-long: 0.8s;
+  }
+}

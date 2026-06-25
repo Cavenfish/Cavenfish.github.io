@@ -5,6 +5,9 @@ date = 2025-12-30
 
 [taxonomies]
 tags = ["Julia",  "Science"]
+
+[extra]
+katex = true
 +++
 
 # Canonical Velocity Rescaling Thermostat
@@ -25,9 +28,9 @@ I wanted to put out a short explanation of implementing it.
 The temperature of a system is related to the total kineteic energy of a system
 by,
 
-$
-K = \frac{1}{2} k_B N_f T
-$
+$$
+  K = \frac{1}{2} k_B N_f T
+$$
 
 where $K$ is the kinetic energy, $k_B$ is Boltzmann constant, $N_f$ is the 
 degrees of freedom, and $T$ is the temperature. A velocity rescaling thermostat
@@ -35,11 +38,11 @@ takes advantage of this experssion by scaling the velocities to increase or
 decrease the temperature of the system. Typically through a scaling factor 
 ($\alpha$),
 
-$
-\alpha = \sqrt{\frac{K_\text{target}}{K\text{current}}}
-$
+$$
+  \alpha = \sqrt{\frac{K_\text{target}}{K\text{current}}}
+$$
 
-where $K_\text{target}$ is the target kinetic energy, and $K\text{current}$ is
+where $K_\text{target}$ is the target kinetic energy, and $K_\text{current}$ is
 the kinetic energy of the current timeframe of the simulation. The CVR thermostat
 enforces a canonical sampling for $K_\text{target}$ to ensure proper
 thermodynamic proporties in the simulation. The explicit derivation of this
