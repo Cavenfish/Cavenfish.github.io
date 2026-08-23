@@ -7,6 +7,6 @@ name  = "About Me"
 
 # Me
 
-I'm currently a chemistry PhD candidate at Leiden University. 
+I'm currently an L2 Test Automation Software Engineer at Impulse Space. 
 
-I really enjoy science but I also love coding, especially in Julia and Rust.
+I work on the software used to automate the testing of all the parts of our satellites. 
