@@ -1,0 +1,30 @@
+# The URL the site will be built for
+base_url = "https://Cavenfish.github.io"
+
+# Whether to automatically compile all Sass files in the sass directory
+compile_sass = true
+
+# Whether to build a search index to be used later on by a JavaScript library
+build_search_index = false
+
+theme = "zolanight"
+taxonomies = [{ name = "tags" }]  
+
+[markdown]
+
+[markdown.highlighting]
+theme = "catppuccin-mocha"
+
+[extra]
+name = "Brian C. Ferrari"
+headshot = "static/me.jpg"
+job_title = "Test Automation Software Engineer II"
+company = "Impulse Space"
+tagline = "Building robust automation software for next-generation spacecraft testing"
+projects_file = "projects.toml"
+
+[extra.zolanight]
+theme = "tokyonight"               # Default theme, override as shown above
+home_list_latest_blog_posts = true # Toggles latest posts on homepage
+google_analytics_id = ""
+ko_fi_url = "" 
