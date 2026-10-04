@@ -1,0 +1,237 @@
+/* ==========================================================================
+   Project Cards & Grid Styling for ZolaNight
+   ========================================================================== */
+
+.projects-intro {
+  margin-bottom: 2rem;
+  color: var(--fg-color);
+  opacity: 0.9;
+}
+
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.5rem;
+  margin: 1.5rem 0 3rem 0;
+}
+
+@media (max-width: 640px) {
+  .projects-grid {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+}
+
+.project-card {
+  display: flex;
+  flex-direction: column;
+  background-color: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  padding: 1.35rem;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+
+  /* Subtle top accent bar that lights up on hover */
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--cyan-color), var(--blue-color));
+    opacity: 0;
+    transition: opacity 0.2s ease;
+  }
+
+  &:hover {
+    transform: translateY(-4px);
+    border-color: rgba(125, 207, 255, 0.45);
+    background-color: rgba(255, 255, 255, 0.05);
+    box-shadow: 0 10px 24px -5px rgba(0, 0, 0, 0.4);
+
+    &::before {
+      opacity: 1;
+    }
+
+    .project-tag {
+      color: var(--cyan-color);
+      border-color: rgba(125, 207, 255, 0.25);
+    }
+  }
+
+  &.featured {
+    border-color: rgba(255, 158, 100, 0.35);
+
+    &::before {
+      opacity: 0.85;
+      background: linear-gradient(90deg, var(--orange-color), var(--yellow-color));
+    }
+  }
+}
+
+.project-card-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-bottom: 0.6rem;
+}
+
+.project-card-title {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 700;
+  line-height: 1.3;
+  color: var(--blue-color);
+}
+
+.project-badges {
+  display: flex;
+  gap: 0.4rem;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.project-badge {
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+  line-height: 1;
+}
+
+.badge-featured {
+  background-color: rgba(255, 158, 100, 0.15);
+  color: var(--orange-color);
+  border: 1px solid rgba(255, 158, 100, 0.35);
+}
+
+.badge-status {
+  background-color: rgba(125, 207, 255, 0.12);
+  color: var(--cyan-color);
+  border: 1px solid rgba(125, 207, 255, 0.3);
+}
+
+.project-card-description {
+  margin: 0 0 1rem 0;
+  font-size: 0.925rem;
+  line-height: 1.6;
+  color: var(--fg-color);
+  opacity: 0.88;
+  flex-grow: 1;
+}
+
+.project-card-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin: 0 0 1.2rem 0;
+  padding: 0;
+  list-style: none;
+}
+
+.project-tag {
+  font-size: 0.75rem;
+  font-family: inherit;
+  padding: 0.15rem 0.55rem;
+  border-radius: 4px;
+  background-color: rgba(255, 255, 255, 0.06);
+  color: var(--comment-color);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  transition: color 0.15s ease, border-color 0.15s ease;
+}
+
+.project-card-links {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.65rem;
+  margin-top: auto;
+  padding-top: 0.85rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.project-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-decoration: none;
+  padding: 0.4rem 0.8rem;
+  border-radius: 5px;
+  line-height: 1;
+  transition: all 0.2s ease;
+
+  svg {
+    width: 14px;
+    height: 14px;
+    flex-shrink: 0;
+    transition: stroke 0.2s ease;
+  }
+}
+
+.project-btn-repo {
+  color: var(--orange-color);
+  background-color: rgba(255, 158, 100, 0.08);
+  border: 1px solid rgba(255, 158, 100, 0.35);
+
+  &:hover {
+    background-color: var(--orange-color);
+    color: var(--bg-color);
+    border-color: var(--orange-color);
+    text-decoration: none;
+
+    svg {
+      stroke: var(--bg-color);
+    }
+  }
+}
+
+.project-btn-home {
+  color: var(--green-color);
+  background-color: rgba(158, 206, 106, 0.08);
+  border: 1px solid rgba(158, 206, 106, 0.35);
+
+  &:hover {
+    background-color: var(--green-color);
+    color: var(--bg-color);
+    border-color: var(--green-color);
+    text-decoration: none;
+
+    svg {
+      stroke: var(--bg-color);
+    }
+  }
+}
+
+/* Adaptations for light palettes (e.g. tokyoday, solarized-light, gruvbox-light) */
+.theme-tokyoday,
+.theme-gruvbox-light,
+.theme-solarized-light {
+  .project-card {
+    background-color: rgba(0, 0, 0, 0.03);
+    border-color: rgba(0, 0, 0, 0.12);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+
+    &:hover {
+      background-color: rgba(0, 0, 0, 0.05);
+      border-color: var(--cyan-color);
+      box-shadow: 0 8px 18px rgba(0, 0, 0, 0.12);
+    }
+  }
+
+  .project-tag {
+    background-color: rgba(0, 0, 0, 0.05);
+    border-color: rgba(0, 0, 0, 0.08);
+  }
+
+  .project-card-links {
+    border-top-color: rgba(0, 0, 0, 0.08);
+  }
+}

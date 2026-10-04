@@ -1,0 +1,38 @@
+[[projects]]
+title = "Rejection Roulette"
+description = "A cross-pltform desktop app for tracking job applications."
+repo = "https://github.com/Cavenfish/RejectionRoulette"
+tags = ["Rust", "Dioxus", "SQLite"]
+
+[[projects]]
+title = "Bonança"
+description = "A Rust library for building DeFi bots."
+repo = "https://github.com/Cavenfish/bonanca"
+homepage = "https://cavenfish.github.io/bonanca/"
+tags = ["Rust", "Alloy", "EVM", "Solana"]
+
+[[projects]]
+title = "YASS"
+description = "A simulation suite for atomistic simulations in Julia."
+repo = "https://github.com/Cavenfish/YetAnotherSimulationSuite.jl"
+homepage = "https://cavenfish.github.io/YetAnotherSimulationSuite.jl/dev/"
+tags = ["Julia", "Science", "Simulation"]
+
+[[projects]]
+title = "AcademicWebsite.jl"
+description = "A template for academic websites using Franklin.jl."
+repo = "https://github.com/Cavenfish/AcademicWebsite.jl"
+homepage = "https://cavenfish.github.io/AcademicWebsite.jl/"
+tags = ["Julia", "SASS", "HTML", "Academia"]
+
+[[projects]]
+title = "Chibia"
+description = "A Rust based CLI for keeping track of Tibia hunting data."
+repo = "https://github.com/Cavenfish/chibia"
+tags = ["Rust", "CLI", "SQLite"]
+
+[[projects]]
+title = "autogamess"
+description = "A Python package for automating Raman calculations using GAMESS(us)."
+repo = "https://github.com/Cavenfish/autogamess"
+tags = ["Python", "Science", "Automation"]

@@ -1,0 +1,193 @@
+/* ==========================================================================
+   Hero Profile Container Styling for ZolaNight
+   ========================================================================== */
+
+.hero-card {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  background-color: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  padding: 2rem;
+  margin: 1.5rem 0 2.5rem 0;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+
+  /* Sleek top accent line with theme gradient */
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--cyan-color), var(--blue-color), var(--magenta-color));
+    opacity: 0.85;
+    transition: opacity 0.2s ease;
+  }
+
+  &:hover {
+    transform: translateY(-3px);
+    border-color: rgba(125, 207, 255, 0.45);
+    background-color: rgba(255, 255, 255, 0.05);
+    box-shadow: 0 12px 28px -6px rgba(0, 0, 0, 0.45);
+
+    &::before {
+      opacity: 1;
+    }
+
+    .hero-avatar-wrapper {
+      box-shadow: 0 0 20px rgba(125, 207, 255, 0.35);
+    }
+  }
+}
+
+.hero-avatar-wrapper {
+  flex-shrink: 0;
+  width: 130px;
+  height: 130px;
+  border-radius: 50%;
+  padding: 3px;
+  background: linear-gradient(135deg, var(--cyan-color), var(--blue-color), var(--magenta-color));
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+  transition: all 0.25s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero-avatar {
+  width: 100% !important;
+  height: 100% !important;
+  border-radius: 50% !important;
+  border: 2px solid var(--bg-color) !important;
+  object-fit: cover !important;
+  display: block !important;
+  margin: 0 !important;
+  max-width: none !important;
+}
+
+.hero-content {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.hero-name {
+  margin: 0 0 0.5rem 0;
+  font-size: 2rem;
+  font-weight: 800;
+  line-height: 1.15;
+  color: var(--blue-color);
+  letter-spacing: -0.01em;
+}
+
+.hero-title-badge {
+  display: inline-flex;
+  align-items: center;
+  align-self: flex-start;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  padding: 0.3rem 0.75rem;
+  border-radius: 6px;
+  background-color: rgba(125, 207, 255, 0.1);
+  color: var(--cyan-color);
+  border: 1px solid rgba(125, 207, 255, 0.25);
+  margin-bottom: 0.85rem;
+  line-height: 1.35;
+
+  svg {
+    width: 14px;
+    height: 14px;
+    flex-shrink: 0;
+  }
+}
+
+.hero-job-title {
+  color: var(--cyan-color);
+}
+
+.hero-badge-separator {
+  color: var(--comment-color);
+  font-weight: 400;
+  opacity: 0.85;
+  margin: 0 0.1rem;
+}
+
+.hero-company {
+  color: var(--blue-color);
+  font-weight: 700;
+}
+
+.hero-company-link {
+  color: var(--blue-color);
+  font-weight: 700;
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+    color: var(--cyan-color);
+  }
+}
+
+.hero-tagline {
+  margin: 0;
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--fg-color);
+  opacity: 0.9;
+  max-width: 620px;
+}
+
+/* Responsive adjustment for mobile screens */
+@media (max-width: 640px) {
+  .hero-card {
+    flex-direction: column;
+    text-align: center;
+    gap: 1.25rem;
+    padding: 1.5rem 1.25rem;
+  }
+
+  .hero-title-badge {
+    align-self: center;
+  }
+
+  .hero-avatar-wrapper {
+    width: 110px;
+    height: 110px;
+  }
+
+  .hero-name {
+    font-size: 1.65rem;
+  }
+
+  .hero-tagline {
+    font-size: 0.95rem;
+  }
+}
+
+/* Light theme adaptations (tokyoday, solarized-light, gruvbox-light) */
+.theme-tokyoday,
+.theme-gruvbox-light,
+.theme-solarized-light {
+  .hero-card {
+    background-color: rgba(0, 0, 0, 0.03);
+    border-color: rgba(0, 0, 0, 0.12);
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
+
+    &:hover {
+      background-color: rgba(0, 0, 0, 0.05);
+      border-color: var(--blue-color);
+      box-shadow: 0 10px 22px rgba(0, 0, 0, 0.12);
+    }
+  }
+
+  .hero-title-badge {
+    background-color: rgba(15, 75, 110, 0.08);
+    border-color: rgba(15, 75, 110, 0.2);
+  }
+}

@@ -1,0 +1,411 @@
+/* ==========================================================================
+   Blog Posts Container, Cards, Tags & Single Post Styling for ZolaNight
+   ========================================================================== */
+
+.posts-intro {
+  margin-bottom: 2rem;
+  color: var(--fg-color);
+  opacity: 0.9;
+}
+
+.posts-container,
+ul.blog {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin: 1.5rem 0 3rem 0;
+  padding-left: 0;
+  list-style: none;
+}
+
+.post-card,
+ul.blog > li > article {
+  display: flex;
+  flex-direction: column;
+  background-color: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  padding: 1.35rem;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+
+  /* Subtle top accent bar that lights up on hover */
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--blue-color), var(--magenta-color));
+    opacity: 0;
+    transition: opacity 0.2s ease;
+  }
+
+  &:hover {
+    transform: translateY(-3px);
+    border-color: rgba(122, 162, 247, 0.45);
+    background-color: rgba(255, 255, 255, 0.05);
+    box-shadow: 0 10px 24px -5px rgba(0, 0, 0, 0.4);
+
+    &::before {
+      opacity: 1;
+    }
+
+    .post-card-title a,
+    h2 a {
+      color: var(--cyan-color);
+    }
+
+    .post-read-more {
+      color: var(--orange-color);
+
+      svg {
+        transform: translateX(3px);
+      }
+    }
+  }
+}
+
+.post-card-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.5rem 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.post-card-title,
+ul.blog > li > article > h2 {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 700;
+  line-height: 1.3;
+
+  a {
+    color: var(--blue-color);
+    text-decoration: none;
+    transition: color 0.15s ease;
+
+    &:hover {
+      text-decoration: none;
+      color: var(--cyan-color);
+    }
+  }
+}
+
+.post-card-date,
+ul.blog > li > article time {
+  font-size: 0.85rem;
+  color: var(--comment-color);
+  font-family: inherit;
+  white-space: nowrap;
+}
+
+ul.blog > li > article > p:has(time) {
+  margin-top: 0.25rem;
+  margin-bottom: 0.5rem;
+  font-size: 0.85rem;
+  color: var(--comment-color);
+}
+
+/* Tags container */
+.post-card-tags,
+.single-post-tags {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.45rem;
+  margin: 0.4rem 0 0.9rem 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* Individual tag pills */
+.post-tag {
+  display: inline-flex;
+  align-items: center;
+  font-size: 0.75rem;
+  font-family: inherit;
+  font-weight: 500;
+  text-decoration: none;
+  padding: 0.2rem 0.6rem;
+  border-radius: 4px;
+  background-color: rgba(158, 206, 106, 0.08);
+  color: var(--green-color);
+  border: 1px solid rgba(158, 206, 106, 0.25);
+  line-height: 1.2;
+  transition: all 0.15s ease;
+
+  &:hover {
+    text-decoration: none;
+    background-color: var(--green-color);
+    color: var(--bg-color);
+    border-color: var(--green-color);
+  }
+}
+
+.post-card-description,
+ul.blog > li > article > p:last-child {
+  margin: 0 0 1rem 0;
+  font-size: 0.925rem;
+  line-height: 1.6;
+  color: var(--fg-color);
+  opacity: 0.88;
+  flex-grow: 1;
+}
+
+.post-card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: auto;
+  padding-top: 0.75rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.post-read-more {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--orange-color);
+  text-decoration: none;
+  transition: color 0.15s ease;
+
+  svg {
+    width: 14px;
+    height: 14px;
+    flex-shrink: 0;
+    transition: transform 0.2s ease;
+  }
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.post-reading-time {
+  font-size: 0.8rem;
+  color: var(--comment-color);
+}
+
+/* ==========================================================================
+   Single Post Page Styling
+   ========================================================================== */
+
+.single-post-header {
+  margin-bottom: 2rem;
+  padding-bottom: 1.25rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.single-post-title {
+  margin: 0 0 0.5rem 0;
+  font-size: 2rem;
+  line-height: 1.25;
+  color: var(--blue-color);
+}
+
+.single-post-meta {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+  color: var(--comment-color);
+  margin-bottom: 0.6rem;
+}
+
+.single-post-content {
+  line-height: 1.7;
+  font-size: 1rem;
+  margin-bottom: 2.5rem;
+}
+
+.single-post-footer {
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  margin-top: 2rem;
+}
+
+.post-btn-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  color: var(--orange-color);
+  text-decoration: none;
+  font-size: 0.875rem;
+  font-weight: 600;
+  padding: 0.4rem 0.8rem;
+  border-radius: 5px;
+  border: 1px solid rgba(255, 158, 100, 0.35);
+  background-color: rgba(255, 158, 100, 0.08);
+  transition: all 0.2s ease;
+
+  &:hover {
+    background-color: var(--orange-color);
+    color: var(--bg-color);
+    border-color: var(--orange-color);
+    text-decoration: none;
+  }
+}
+
+/* ==========================================================================
+   Tag Header & Tag Cloud Styling
+   ========================================================================== */
+
+.tag-header {
+  margin-bottom: 2rem;
+
+  h1 {
+    margin-bottom: 0.35rem;
+
+    .tag-name {
+      color: var(--green-color);
+    }
+  }
+
+  .tag-count {
+    color: var(--comment-color);
+    font-size: 0.95rem;
+    margin: 0;
+  }
+}
+
+.tag-all-link {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 2.5rem;
+}
+
+.tags-cloud {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin: 2rem 0;
+}
+
+.tag-cloud-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.45rem 0.85rem;
+  border-radius: 6px;
+  background-color: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(158, 206, 106, 0.3);
+  color: var(--green-color);
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: all 0.2s ease;
+
+  .tag-count {
+    display: inline-block;
+    font-size: 0.75rem;
+    padding: 0.1rem 0.45rem;
+    border-radius: 10px;
+    background-color: rgba(158, 206, 106, 0.15);
+    color: var(--fg-color);
+  }
+
+  &:hover {
+    background-color: var(--green-color);
+    color: var(--bg-color);
+    border-color: var(--green-color);
+    text-decoration: none;
+
+    .tag-count {
+      background-color: rgba(0, 0, 0, 0.25);
+      color: var(--bg-color);
+    }
+  }
+}
+
+/* ==========================================================================
+   Pagination Styling
+   ========================================================================== */
+
+.pagination,
+main > nav:has(a) {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin: 2.5rem 0;
+}
+
+.pagination-link,
+main > nav > a {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.35rem 0.85rem;
+  border-radius: 5px;
+  border: 1px solid rgba(255, 158, 100, 0.35);
+  background-color: rgba(255, 158, 100, 0.08);
+  color: var(--orange-color);
+  text-decoration: none;
+  font-size: 0.875rem;
+  font-weight: 600;
+  transition: all 0.2s ease;
+
+  &:hover {
+    background-color: var(--orange-color);
+    color: var(--bg-color);
+    border-color: var(--orange-color);
+    text-decoration: none;
+  }
+}
+
+.pagination-info,
+main > nav > span {
+  color: var(--comment-color);
+  font-size: 0.875rem;
+}
+
+/* ==========================================================================
+   Light Palette Overrides (tokyoday, solarized-light, gruvbox-light)
+   ========================================================================== */
+
+.theme-tokyoday,
+.theme-gruvbox-light,
+.theme-solarized-light {
+  .post-card,
+  ul.blog > li > article {
+    background-color: rgba(0, 0, 0, 0.03);
+    border-color: rgba(0, 0, 0, 0.12);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+
+    &:hover {
+      background-color: rgba(0, 0, 0, 0.05);
+      border-color: var(--blue-color);
+      box-shadow: 0 8px 18px rgba(0, 0, 0, 0.12);
+    }
+  }
+
+  .post-tag {
+    background-color: rgba(0, 0, 0, 0.04);
+    border-color: rgba(56, 95, 13, 0.3);
+  }
+
+  .post-card-footer,
+  .single-post-header,
+  .single-post-footer {
+    border-top-color: rgba(0, 0, 0, 0.08);
+    border-bottom-color: rgba(0, 0, 0, 0.08);
+  }
+
+  .tag-cloud-item {
+    background-color: rgba(0, 0, 0, 0.03);
+    border-color: rgba(0, 0, 0, 0.12);
+  }
+
+  .pagination-link,
+  main > nav > a {
+    background-color: rgba(0, 0, 0, 0.03);
+    border-color: rgba(0, 0, 0, 0.12);
+  }
+}

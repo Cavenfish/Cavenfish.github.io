@@ -1,0 +1,126 @@
+{% extends "base.html" %}
+
+{% block title %}
+{% if section.title %}{{ section.title }}{% if config.title %} - {{ config.title }}{% endif %}{% elif config.extra.name %}{{ config.extra.name }}{% if config.title %} - {{ config.title }}{% endif %}{% else %}{{ config.title }}{% endif %}
+{% endblock title %}
+
+{% block content %}
+{% if config.extra.name or config.extra.headshot or config.extra.job_title or config.extra.company or config.extra.tagline %}
+<div class="hero-card">
+  {% if config.extra.headshot %}
+    <div class="hero-avatar-wrapper">
+      {% if "://" in config.extra.headshot %}
+        {% set headshot_url = config.extra.headshot %}
+      {% else %}
+        {% set clean_path = config.extra.headshot | replace(from="static/", to="") %}
+        {% set headshot_url = get_url(path=clean_path) %}
+      {% endif %}
+      <img class="hero-avatar" src="{{ headshot_url }}" alt="{{ config.extra.name | default(value="Profile photo") }}">
+    </div>
+  {% endif %}
+
+  <div class="hero-content">
+    {% if config.extra.name %}
+      <h1 class="hero-name">{{ config.extra.name }}</h1>
+    {% endif %}
+
+    {% if config.extra.job_title or config.extra.company %}
+      <div class="hero-title-badge">
+        {% if config.extra.job_title %}
+          <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <polyline points="16 18 22 12 16 6"></polyline>
+            <polyline points="8 6 2 12 8 18"></polyline>
+          </svg>
+          <span class="hero-job-title">{{ config.extra.job_title }}</span>
+        {% endif %}
+        {% if config.extra.job_title and config.extra.company %}
+          <span class="hero-badge-separator">@</span>
+        {% endif %}
+        {% if config.extra.company %}
+          {% if not config.extra.job_title %}
+            <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
+              <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
+            </svg>
+          {% endif %}
+          {% if config.extra.company_url %}
+            <a href="{{ config.extra.company_url }}" class="hero-company-link" target="_blank" rel="noopener noreferrer">{{ config.extra.company }}</a>
+          {% else %}
+            <span class="hero-company">{{ config.extra.company }}</span>
+          {% endif %}
+        {% endif %}
+      </div>
+    {% endif %}
+
+    {% if config.extra.tagline %}
+      <p class="hero-tagline">{{ config.extra.tagline }}</p>
+    {% endif %}
+  </div>
+</div>
+{% endif %}
+
+{% if section.content %}
+<section class="home-bio">
+  {% if section.title %}
+    <h1>{{ section.title }}</h1>
+  {% endif %}
+  <div>
+    {{ section.content | safe }}
+  </div>
+</section>
+{% endif %}
+
+{% if config.extra.home_list_latest_blog_posts | default(value=true) %}
+<h2>Latest Posts</h2>
+{% set blog_section = get_section(path="blog/_index.md") %}
+{% if blog_section and blog_section.pages | length > 0 %}
+<div class="posts-container">
+  {% for page in blog_section.pages[:5] %}
+  <div class="post-card">
+    <div class="post-card-header">
+      <h3 class="post-card-title">
+        <a href="{{ page.permalink }}">{{ page.title }}</a>
+      </h3>
+      {% if page.date %}
+      <time class="post-card-date" datetime="{{ page.date | date(format="%Y-%m-%d") }}">
+        {{ page.date | date(format="%B %d, %Y") }}
+      </time>
+      {% endif %}
+    </div>
+
+    {% if page.taxonomies.tags %}
+    <div class="post-card-tags">
+      {% for tag in page.taxonomies.tags %}
+      <a href="{{ get_taxonomy_url(kind="tags", name=tag) }}" class="post-tag">{{ tag }}</a>
+      {% endfor %}
+    </div>
+    {% endif %}
+
+    {% if page.description %}
+    <p class="post-card-description">{{ page.description }}</p>
+    {% elif page.summary %}
+    <p class="post-card-description">{{ page.summary | striptags | truncate(length=160) }}</p>
+    {% endif %}
+
+    <div class="post-card-footer">
+      <a href="{{ page.permalink }}" class="post-read-more">
+        <span>Read post</span>
+        <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <line x1="5" y1="12" x2="19" y2="12"></line>
+          <polyline points="12 5 19 12 12 19"></polyline>
+        </svg>
+      </a>
+      {% if page.reading_time %}
+      <span class="post-reading-time">{{ page.reading_time }} min read</span>
+      {% endif %}
+    </div>
+  </div>
+  {% endfor %}
+</div>
+{% else %}
+<p>No blog posts found.</p>
+{% endif %}
+{% endif %}
+
+{{ super() }}
+{% endblock content %}

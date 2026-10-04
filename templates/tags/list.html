@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block title %}
+Tags{% if config.title %} - {{ config.title }}{% endif %}
+{% endblock title %}
+
+{% block content %}
+<h1>Tags</h1>
+<div class="tags-cloud">
+  {% for term in terms %}
+  <a href="{{ term.permalink }}" class="tag-cloud-item">
+    <span class="tag-name">{{ term.name }}</span>
+    <span class="tag-count">{{ term.pages | length }}</span>
+  </a>
+  {% endfor %}
+</div>
+<div class="tag-all-link">
+  <a href="{{ get_url(path="blog/") }}" class="post-btn-back">&larr; Back to all posts</a>
+</div>
+{% endblock content %}

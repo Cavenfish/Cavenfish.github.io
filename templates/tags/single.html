@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+
+{% block title %}
+Tag: {{ term.name }}{% if config.title %} - {{ config.title }}{% endif %}
+{% endblock title %}
+
+{% block content %}
+<div class="tag-header">
+  <h1>Tag: <span class="tag-name">{{ term.name }}</span></h1>
+  <p class="tag-count">{{ term.pages | length }} post{% if term.pages | length != 1 %}s{% endif %} tagged with "{{ term.name }}"</p>
+</div>
+
+<div class="posts-container">
+  {% for page in term.pages %}
+  <div class="post-card">
+    <div class="post-card-header">
+      <h2 class="post-card-title">
+        <a href="{{ page.permalink }}">{{ page.title }}</a>
+      </h2>
+      {% if page.date %}
+      <time class="post-card-date" datetime="{{ page.date | date(format="%Y-%m-%d") }}">
+        {{ page.date | date(format="%B %d, %Y") }}
+      </time>
+      {% endif %}
+    </div>
+
+    {% if page.taxonomies.tags %}
+    <div class="post-card-tags">
+      {% for tag in page.taxonomies.tags %}
+      <a href="{{ get_taxonomy_url(kind="tags", name=tag) }}" class="post-tag">{{ tag }}</a>
+      {% endfor %}
+    </div>
+    {% endif %}
+
+    {% if page.description %}
+    <p class="post-card-description">{{ page.description }}</p>
+    {% elif page.summary %}
+    <p class="post-card-description">{{ page.summary | striptags | truncate(length=160) }}</p>
+    {% endif %}
+
+    <div class="post-card-footer">
+      <a href="{{ page.permalink }}" class="post-read-more">
+        <span>Read post</span>
+        <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <line x1="5" y1="12" x2="19" y2="12"></line>
+          <polyline points="12 5 19 12 12 19"></polyline>
+        </svg>
+      </a>
+      {% if page.reading_time %}
+      <span class="post-reading-time">{{ page.reading_time }} min read</span>
+      {% endif %}
+    </div>
+  </div>
+  {% endfor %}
+</div>
+
+<div class="tag-all-link">
+  <a href="{{ get_url(path="blog/") }}" class="post-btn-back">&larr; Back to all posts</a>
+  <a href="{{ get_url(path="tags/") }}" class="post-btn-back">Browse all tags &rarr;</a>
+</div>
+{% endblock content %}
