@@ -22,6 +22,8 @@ job_title = "Test Automation Software Engineer II"
 company = "Impulse Space"
 tagline = "Building robust automation software for next-generation spacecraft testing"
 projects_file = "projects.toml"
+github = "https://github.com/Cavenfish"
+linkedin = "https://www.linkedin.com/in/brian-ferrari-001b8a163/"
 
 [extra.zolanight]
 theme = "tokyonight"               # Default theme, override as shown above
