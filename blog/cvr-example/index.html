@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>
+Canonical Velocity Rescaling Thermostat
+</title>
+    
+    
+    <meta name="description" content="A guide for implementing the CVR thermostat in Julia">
+    
+    
+    <meta name="keywords" content="Julia, Molecular Dynamics, Science, Coding">
+    
+    
+    <link rel="canonical" href="https://Cavenfish.github.io/blog/cvr-example/" />
+    
+    <link rel="stylesheet" href="https://Cavenfish.github.io/style.css">
+    
+    
+  </head>
+  <body class="theme-tokyonight">
+    
+    <header>
+      <nav>
+        <a href="https://Cavenfish.github.io">/home/</a>
+
+        
+        
+        
+        <a href="https://Cavenfish.github.io/blog/">/blog/</a>
+        
+        
+        <a href="https://Cavenfish.github.io/projects/">/projects/</a>
+        
+
+        
+        
+      </nav>
+    </header>
+    <hr>
+    <main>
+      
+<article class="single-post">
+  <header class="single-post-header">
+    <h1 class="single-post-title">Canonical Velocity Rescaling Thermostat</h1>
+    
+    <div class="single-post-meta">
+      
+      <time class="single-post-date" datetime="2025-12-05">
+        Published on December 05, 2025
+      </time>
+      
+      
+      <span class="single-post-reading-time">&bull; 3 min read</span>
+      
+    </div>
+
+    
+    <div class="post-card-tags">
+      
+      <a href="https://Cavenfish.github.io/tags/julia/" class="post-tag">Julia</a>
+      
+      <a href="https://Cavenfish.github.io/tags/molecular-dynamics/" class="post-tag">Molecular Dynamics</a>
+      
+      <a href="https://Cavenfish.github.io/tags/science/" class="post-tag">Science</a>
+      
+      <a href="https://Cavenfish.github.io/tags/coding/" class="post-tag">Coding</a>
+      
+    </div>
+    
+  </header>
+
+  <div class="single-post-content">
+    <h1 id="canonical-velocity-rescaling-thermostat">Canonical Velocity Rescaling Thermostat</h1>
+<p>This thermostat is the most widely used thermostat for molecular dynamics (MD) simulations. The
+<a rel="external" href="https://pubs.aip.org/aip/jcp/article-abstract/126/1/014101/186581/Canonical-sampling-through-velocity-rescaling?redirectedFrom=fulltext">manuscript</a>
+it was published in is one of the highest cited papers related to MD simulations. Due to the massive
+success of this thermostat there is a wide array of resources explaining the thermostat and the math
+behind it in simple terms. However, none of these resources show how to implement the thermostat in
+a programming language. Making the source code of MD packages the only option, but they are often
+very difficult to follow. Since I've implemented this thermostat in Julia for my MD package
+(<a rel="external" href="https://github.com/Cavenfish/YetAnotherSimulationSuite.jl">YASS</a>), I wanted to put out a short
+explanation of implementing it.</p>
+<h2 id="brief-math-explanation">Brief Math Explanation</h2>
+<p>The temperature of a system is related to the total kineteic energy of a system by,</p>
+<p>$
+K = \frac{1}{2} k_B N_f T
+$</p>
+<p>where $K$ is the kinetic energy, $k_B$ is Boltzmann constant, $N_f$ is the degrees of freedom, and
+$T$ is the temperature. A velocity rescaling thermostat takes advantage of this experssion by
+scaling the velocities to increase or decrease the temperature of the system. Typically through a
+scaling factor ($\alpha$),</p>
+<p>$
+\alpha = \sqrt{\frac{K_\text{target}}{K\text{current}}}
+$</p>
+<p>where $K_\text{target}$ is the target kinetic energy, and $K\text{current}$ is the kinetic energy of
+the current timeframe of the simulation. The CVR thermostat enforces a canonical sampling for
+$K_\text{target}$ to ensure proper thermodynamic proporties in the simulation. The explicit
+derivation of this can be found in the original manuscript, or even other online resources. For the
+sake of just learning to implement the thermostat only these two concepts are necessary.</p>
+<h2 id="coding-it-up">Coding it Up</h2>
+<p>We first need a function that calculates the temperature of our system from the kinetic energy. We
+can calculate this by taking $\sum_i m_i v_i^2 = k_B N_f T$, where the $\frac{1}{2}$ is dropped from
+both sides.</p>
+<pre class="giallo" style="color: #CDD6F4; background-color: #1E1E2E;" ><code data-lang="julia"><span class="giallo-l"><span style="color: #CBA6F7;">function</span><span style="color: #89B4FA;font-style: italic;"> getTemp</span><span>(v</span><span style="color: #94E2D5;">::</span><span style="color: #F9E2AF;font-style: italic;">AbstractVector</span><span style="color: #9399B2;">,</span><span> m</span><span style="color: #94E2D5;">::</span><span style="color: #F9E2AF;font-style: italic;">AbstractVector</span><span style="color: #9399B2;">,</span><span> kB</span><span style="color: #94E2D5;">::</span><span style="color: #F9E2AF;font-style: italic;">Float64</span><span>)</span></span>
+<span class="giallo-l"><span style="color: #9399B2;font-style: italic;">  # Leave out the 1/2 to get 2Ekin for T calc</span></span>
+<span class="giallo-l"><span>  N    </span><span style="color: #94E2D5;">=</span><span style="color: #89B4FA;font-style: italic;"> length</span><span>(m)</span></span>
+<span class="giallo-l"><span>  Nf   </span><span style="color: #94E2D5;">=</span><span style="color: #FAB387;"> 3</span><span>N </span><span style="color: #94E2D5;">-</span><span style="color: #FAB387;"> 3</span></span>
+<span class="giallo-l"><span>  v2   </span><span style="color: #94E2D5;">=</span><span> [i</span><span style="color: #94E2D5;">&#39;</span><span>i </span><span style="color: #CBA6F7;">for</span><span> i </span><span style="color: #94E2D5;">in</span><span> v]</span></span>
+<span class="giallo-l"><span>  Ekin </span><span style="color: #94E2D5;">=</span><span style="color: #89B4FA;font-style: italic;"> sum</span><span>(m </span><span style="color: #94E2D5;">.*</span><span> v2)</span></span>
+<span class="giallo-l"></span>
+<span class="giallo-l"><span>  Ekin </span><span style="color: #94E2D5;">/</span><span> (kB </span><span style="color: #94E2D5;">*</span><span> Nf)</span></span>
+<span class="giallo-l"><span style="color: #CBA6F7;">end</span></span></code></pre>
+<p>The next thing we need is a function for sampling from a normal and gamma distributions. You could
+implement this from scratch but its better to use the implementations in
+<a rel="external" href="https://juliastats.org/Distributions.jl/stable/">Distributions.jl</a> since they are well tested and
+highly performant. These two functions are <code>Normal</code> and <code>Gamma</code> in the code blocks below.</p>
+<p>The CVR thermostat needs to have non-zero velocities to scale (or else you still have zero after
+scaling), so if your system has all zero velocities (or $T=0$) then you skip apply the thermostat
+and let the system gain some amount of kinetic energy due to the potential. This means adding a
+conditional return in your CVR function to avoid wasteful computations. In this example I use a
+short circuit expression (which I love but some hate), so I'll quickly explain them. These
+expressions take advantage of the and/or logic by using the <code>&amp;&amp;</code> and <code>||</code> operators to write compact
+if-then statements.</p>
+<pre class="giallo" style="color: #CDD6F4; background-color: #1E1E2E;" ><code data-lang="julia"><span class="giallo-l"><span style="color: #9399B2;font-style: italic;"># This shows a typical if statment within a for loop</span></span>
+<span class="giallo-l"><span style="color: #CBA6F7;">for</span><span> i </span><span style="color: #94E2D5;">=</span><span style="color: #FAB387;"> 1</span><span style="color: #94E2D5;">:</span><span style="color: #FAB387;">100</span></span>
+<span class="giallo-l"><span style="color: #CBA6F7;">  if</span><span> i </span><span style="color: #94E2D5;">%</span><span style="color: #FAB387;"> 10</span><span style="color: #94E2D5;"> ==</span><span style="color: #FAB387;"> 0</span></span>
+<span class="giallo-l"><span style="color: #89B4FA;font-style: italic;">    println</span><span>(i)</span></span>
+<span class="giallo-l"><span style="color: #CBA6F7;">  end</span></span>
+<span class="giallo-l"><span style="color: #CBA6F7;">end</span></span>
+<span class="giallo-l"></span>
+<span class="giallo-l"><span style="color: #9399B2;font-style: italic;"># This does the same thing but using a short circuit expression</span></span>
+<span class="giallo-l"><span style="color: #CBA6F7;">for</span><span> i </span><span style="color: #94E2D5;">=</span><span style="color: #FAB387;"> 1</span><span style="color: #94E2D5;">:</span><span style="color: #FAB387;">100</span></span>
+<span class="giallo-l"><span>  i </span><span style="color: #94E2D5;">%</span><span style="color: #FAB387;"> 10</span><span style="color: #94E2D5;"> ==</span><span style="color: #FAB387;"> 0</span><span style="color: #94E2D5;"> &amp;&amp;</span><span style="color: #89B4FA;font-style: italic;"> println</span><span>(i)</span></span>
+<span class="giallo-l"><span style="color: #CBA6F7;">end</span></span>
+<span class="giallo-l"></span>
+<span class="giallo-l"><span style="color: #9399B2;font-style: italic;"># Again, the same thing but using ||</span></span>
+<span class="giallo-l"><span style="color: #CBA6F7;">for</span><span> i </span><span style="color: #94E2D5;">=</span><span style="color: #FAB387;"> 1</span><span style="color: #94E2D5;">:</span><span style="color: #FAB387;">100</span></span>
+<span class="giallo-l"><span>  i </span><span style="color: #94E2D5;">%</span><span style="color: #FAB387;"> 10</span><span style="color: #94E2D5;"> !=</span><span style="color: #FAB387;"> 0</span><span style="color: #94E2D5;"> ||</span><span style="color: #89B4FA;font-style: italic;"> println</span><span>(i)</span></span>
+<span class="giallo-l"><span style="color: #CBA6F7;">end</span></span></code></pre>
+<p>Getting back to the CVR thermostat, once we have a non-zero kinetic energy we can rescale the
+velocities to try to reach our desired temperature.</p>
+<pre class="giallo" style="color: #CDD6F4; background-color: #1E1E2E;" ><code data-lang="julia"><span class="giallo-l"><span style="color: #CBA6F7;">function</span><span style="color: #89B4FA;font-style: italic;"> CVR!</span><span>(</span></span>
+<span class="giallo-l"><span>    v</span><span style="color: #94E2D5;">::</span><span style="color: #F9E2AF;font-style: italic;">AbstractVector</span><span style="color: #9399B2;">,</span><span> m</span><span style="color: #94E2D5;">::</span><span style="color: #F9E2AF;font-style: italic;">AbstractVector</span><span style="color: #9399B2;">,</span></span>
+<span class="giallo-l"><span>    kB</span><span style="color: #94E2D5;">::</span><span style="color: #F9E2AF;font-style: italic;">Float64</span><span style="color: #9399B2;">,</span><span> tau</span><span style="color: #94E2D5;">::</span><span style="color: #F9E2AF;font-style: italic;">Float64</span><span style="color: #9399B2;">,</span><span> Ttar</span><span style="color: #94E2D5;">::</span><span style="color: #F9E2AF;font-style: italic;">Float64</span></span>
+<span class="giallo-l"><span>)</span></span>
+<span class="giallo-l"><span>  N    </span><span style="color: #94E2D5;">=</span><span style="color: #89B4FA;font-style: italic;"> length</span><span>(m)</span></span>
+<span class="giallo-l"><span>  Tsim </span><span style="color: #94E2D5;">=</span><span style="color: #89B4FA;font-style: italic;"> getTemp</span><span>(v</span><span style="color: #9399B2;">,</span><span> m</span><span style="color: #9399B2;">,</span><span> kB)</span></span>
+<span class="giallo-l"></span>
+<span class="giallo-l"><span>  Tsim </span><span style="color: #94E2D5;">==</span><span style="color: #FAB387;"> 0.0</span><span style="color: #94E2D5;"> &amp;&amp;</span><span style="color: #CBA6F7;"> return</span></span>
+<span class="giallo-l"></span>
+<span class="giallo-l"><span>  Nf </span><span style="color: #94E2D5;">=</span><span style="color: #FAB387;"> 3</span><span>N </span><span style="color: #94E2D5;">-</span><span style="color: #FAB387;"> 3</span></span>
+<span class="giallo-l"><span>  n  </span><span style="color: #94E2D5;">=</span><span style="color: #89B4FA;font-style: italic;"> Normal</span><span>(</span><span style="color: #FAB387;">0.0</span><span style="color: #9399B2;">,</span><span style="color: #FAB387;">1.0</span><span>)</span></span>
+<span class="giallo-l"><span>  R1 </span><span style="color: #94E2D5;">=</span><span style="color: #89B4FA;font-style: italic;"> rand</span><span>(n)</span></span>
+<span class="giallo-l"></span>
+<span class="giallo-l"><span>  R2 </span><span style="color: #94E2D5;">=</span><span style="color: #CBA6F7;"> if</span><span> (Nf</span><span style="color: #94E2D5;">-</span><span style="color: #FAB387;">1</span><span>)</span><span style="color: #94E2D5;">%</span><span style="color: #FAB387;">2</span><span style="color: #94E2D5;"> ==</span><span style="color: #FAB387;"> 0</span></span>
+<span class="giallo-l"><span>    alpha </span><span style="color: #94E2D5;">=</span><span> (Nf </span><span style="color: #94E2D5;">-</span><span style="color: #FAB387;"> 1</span><span>)</span><span style="color: #94E2D5;">/</span><span style="color: #FAB387;">2</span></span>
+<span class="giallo-l"><span>    G     </span><span style="color: #94E2D5;">=</span><span style="color: #89B4FA;font-style: italic;"> Gamma</span><span>(alpha</span><span style="color: #9399B2;">,</span><span style="color: #FAB387;"> 1</span><span>)</span></span>
+<span class="giallo-l"></span>
+<span class="giallo-l"><span style="color: #FAB387;">    2</span><span style="color: #94E2D5;"> .*</span><span style="color: #89B4FA;font-style: italic;"> rand</span><span>(G)</span></span>
+<span class="giallo-l"><span style="color: #CBA6F7;">  else</span></span>
+<span class="giallo-l"><span>    alpha </span><span style="color: #94E2D5;">=</span><span> (Nf </span><span style="color: #94E2D5;">-</span><span style="color: #FAB387;"> 2</span><span>)</span><span style="color: #94E2D5;">/</span><span style="color: #FAB387;">2</span></span>
+<span class="giallo-l"><span>    G     </span><span style="color: #94E2D5;">=</span><span style="color: #89B4FA;font-style: italic;"> Gamma</span><span>(alpha</span><span style="color: #9399B2;">,</span><span style="color: #FAB387;"> 1</span><span>)</span></span>
+<span class="giallo-l"></span>
+<span class="giallo-l"><span style="color: #FAB387;">    2</span><span style="color: #94E2D5;"> .*</span><span style="color: #89B4FA;font-style: italic;"> rand</span><span>(G)</span><span style="color: #94E2D5;"> .+</span><span> (</span><span style="color: #89B4FA;font-style: italic;">rand</span><span>(n)</span><span style="color: #94E2D5;"> .^</span><span style="color: #FAB387;">2</span><span>)</span></span>
+<span class="giallo-l"><span style="color: #CBA6F7;">  end</span></span>
+<span class="giallo-l"></span>
+<span class="giallo-l"><span>  tau </span><span style="color: #94E2D5;">&gt;</span><span style="color: #FAB387;"> 0.1</span><span style="color: #94E2D5;"> ?</span><span> c1 </span><span style="color: #94E2D5;">=</span><span style="color: #89B4FA;font-style: italic;"> exp</span><span>(</span><span style="color: #94E2D5;">-</span><span style="color: #FAB387;">1</span><span style="color: #94E2D5;">/</span><span>tau)</span><span style="color: #94E2D5;"> :</span><span> c1 </span><span style="color: #94E2D5;">=</span><span style="color: #FAB387;"> 0.0</span></span>
+<span class="giallo-l"></span>
+<span class="giallo-l"><span>  K     </span><span style="color: #94E2D5;">=</span><span style="color: #FAB387;"> 0.5</span><span style="color: #94E2D5;"> *</span><span> Nf </span><span style="color: #94E2D5;">*</span><span> kB </span><span style="color: #94E2D5;">*</span><span> Tsim</span></span>
+<span class="giallo-l"><span>  sigma </span><span style="color: #94E2D5;">=</span><span style="color: #FAB387;"> 0.5</span><span style="color: #94E2D5;"> *</span><span> Nf </span><span style="color: #94E2D5;">*</span><span> kB </span><span style="color: #94E2D5;">*</span><span> Ttar</span></span>
+<span class="giallo-l"></span>
+<span class="giallo-l"><span>  Knew   </span><span style="color: #94E2D5;">=</span><span style="color: #94E2D5;font-style: italic;"> @.</span><span> (</span></span>
+<span class="giallo-l"><span>                K </span><span style="color: #94E2D5;">+</span><span> (</span><span style="color: #FAB387;">1</span><span style="color: #94E2D5;">-</span><span>c1)</span><span style="color: #94E2D5;"> *</span><span> (sigma </span><span style="color: #94E2D5;">*</span><span> (R2 </span><span style="color: #94E2D5;">+</span><span> R1</span><span style="color: #94E2D5;">^</span><span style="color: #FAB387;">2</span><span>)</span><span style="color: #94E2D5;"> /</span><span> Nf </span><span style="color: #94E2D5;">-</span><span> K)</span><span style="color: #94E2D5;"> +</span></span>
+<span class="giallo-l"><span style="color: #FAB387;">                2</span><span style="color: #94E2D5;"> *</span><span> R1 </span><span style="color: #94E2D5;">*</span><span style="color: #89B4FA;font-style: italic;"> sqrt</span><span>(K </span><span style="color: #94E2D5;">*</span><span> sigma </span><span style="color: #94E2D5;">/</span><span> Nf </span><span style="color: #94E2D5;">*</span><span> (</span><span style="color: #FAB387;">1</span><span style="color: #94E2D5;">-</span><span>c1)</span><span style="color: #94E2D5;"> *</span><span> c1)</span></span>
+<span class="giallo-l"><span>              )</span></span>
+<span class="giallo-l"><span>  alpha2 </span><span style="color: #94E2D5;">=</span><span style="color: #94E2D5;font-style: italic;"> @.</span><span style="color: #89B4FA;font-style: italic;"> sqrt</span><span>(Knew </span><span style="color: #94E2D5;">/</span><span> K)</span></span>
+<span class="giallo-l"></span>
+<span class="giallo-l"><span style="color: #94E2D5;font-style: italic;">  @.</span><span> v </span><span style="color: #94E2D5;">*=</span><span> alpha2</span></span>
+<span class="giallo-l"><span style="color: #CBA6F7;">end</span></span></code></pre>
+  </div>
+
+  <footer class="single-post-footer">
+    <a href="https://Cavenfish.github.io/blog" class="post-btn-back">&larr; Back to all posts</a>
+  </footer>
+</article>
+
+
+    </main>
+    <hr>
+    <footer>
+      <p>Powered by <a href="https://www.getzola.org/">Zola</a> and <a href="https://github.com/mxaddict/zolanight">ZolaNight Theme</a></p>
+      
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>
+Julia Tips and Tricks
+</title>
+    
+    
+    <meta name="description" content="An outline of some basic, but at times lesser-known, tips and tricks for writting Julia code">
+    
+    
+    <meta name="keywords" content="Julia, Coding">
+    
+    
+    <link rel="canonical" href="https://Cavenfish.github.io/blog/julia-tips/" />
+    
+    <link rel="stylesheet" href="https://Cavenfish.github.io/style.css">
+    
+    
+  </head>
+  <body class="theme-tokyonight">
+    
+    <header>
+      <nav>
+        <a href="https://Cavenfish.github.io">/home/</a>
+
+        
+        
+        
+        <a href="https://Cavenfish.github.io/blog/">/blog/</a>
+        
+        
+        <a href="https://Cavenfish.github.io/projects/">/projects/</a>
+        
+
+        
+        
+      </nav>
+    </header>
+    <hr>
+    <main>
+      
+<article class="single-post">
+  <header class="single-post-header">
+    <h1 class="single-post-title">Julia Tips and Tricks</h1>
+    
+    <div class="single-post-meta">
+      
+      <time class="single-post-date" datetime="2025-12-31">
+        Published on December 31, 2025
+      </time>
+      
+      
+      <span class="single-post-reading-time">&bull; 4 min read</span>
+      
+    </div>
+
+    
+    <div class="post-card-tags">
+      
+      <a href="https://Cavenfish.github.io/tags/julia/" class="post-tag">Julia</a>
+      
+      <a href="https://Cavenfish.github.io/tags/coding/" class="post-tag">Coding</a>
+      
+    </div>
+    
+  </header>
+
+  <div class="single-post-content">
+    <h1 id="tips-and-tricks-for-julia-programming">Tips and Tricks for Julia programming</h1>
+<p>At this point there is a wealth of information for the Julia programming language. Perhaps one of
+the best sources (outside of the official documentation or discourse forum) is
+<a rel="external" href="https://m3g.github.io/JuliaNotes.jl/stable/">JuliaNotes.jl</a>. Personally, I find that more available
+information is better and since I'm a big fan of Julia, I've decided to make my own contribution.</p>
+<p>Here I'll outline some basic, but at times lesser-known, tips and tricks for writing Julia code.</p>
+<h2 id="ternary-conditional-operator">Ternary Conditional Operator</h2>
+<p>Julia has the ternary operator for <code>if-else</code> statements. The best way to explain it is to show two
+equivalent blocks of code. First, one that uses <code>if-else</code></p>
+<pre class="giallo" style="color: #CDD6F4; background-color: #1E1E2E;" ><code data-lang="julia"><span class="giallo-l"><span style="color: #CBA6F7;">for</span><span> i </span><span style="color: #94E2D5;">=</span><span style="color: #FAB387;"> 1</span><span style="color: #94E2D5;">:</span><span style="color: #FAB387;">10</span></span>
+<span class="giallo-l"><span style="color: #CBA6F7;">  if</span><span> i </span><span style="color: #94E2D5;">&gt;</span><span style="color: #FAB387;"> 5</span></span>
+<span class="giallo-l"><span style="color: #89B4FA;font-style: italic;">    println</span><span>(</span><span style="color: #A6E3A1;">&quot;big&quot;</span><span>)</span></span>
+<span class="giallo-l"><span style="color: #CBA6F7;">  else</span></span>
+<span class="giallo-l"><span style="color: #89B4FA;font-style: italic;">    println</span><span>(</span><span style="color: #A6E3A1;">&quot;small&quot;</span><span>)</span></span>
+<span class="giallo-l"><span style="color: #CBA6F7;">  end</span></span>
+<span class="giallo-l"><span style="color: #CBA6F7;">end</span></span></code></pre>
+<p>This lengthy <code>if-else</code> statement can be replaced with a ternary operator while still preserving the
+logic in the code.</p>
+<pre class="giallo" style="color: #CDD6F4; background-color: #1E1E2E;" ><code data-lang="julia"><span class="giallo-l"><span style="color: #CBA6F7;">for</span><span> i </span><span style="color: #94E2D5;">=</span><span style="color: #FAB387;"> 1</span><span style="color: #94E2D5;">:</span><span style="color: #FAB387;">10</span></span>
+<span class="giallo-l"><span>  i </span><span style="color: #94E2D5;">&gt;</span><span style="color: #FAB387;"> 5</span><span style="color: #94E2D5;"> ?</span><span style="color: #89B4FA;font-style: italic;"> println</span><span>(</span><span style="color: #A6E3A1;">&quot;big&quot;</span><span>)</span><span style="color: #94E2D5;"> :</span><span style="color: #89B4FA;font-style: italic;"> println</span><span>(</span><span style="color: #A6E3A1;">&quot;small&quot;</span><span>)</span></span>
+<span class="giallo-l"><span style="color: #CBA6F7;">end</span></span></code></pre>
+<p>Within this ternary expression, the <code>?</code> operator denotes which boolean expression (what comes before
+it) is being evaluated. The <code>:</code> operator separates the <code>if</code> (before the <code>:</code>) and <code>else</code> (after the
+<code>:</code>) outcomes. This can help shrink lengthy code blocks, but it comes with the additional cost of
+increased code complexity. However, once familiar with the ternary operator, the complexity of the
+expression goes away.</p>
+<h2 id="short-circuit-expressions">Short Circuit Expressions</h2>
+<p>In Julia the short circuit operators are <code>&amp;&amp;</code> (<code>and</code> operator), and <code>||</code> (<code>or</code> operator). The most
+basic use for them is conditional statements.</p>
+<pre class="giallo" style="color: #CDD6F4; background-color: #1E1E2E;" ><code data-lang="julia"><span class="giallo-l"><span>x </span><span style="color: #94E2D5;">=</span><span style="color: #FAB387;"> 5</span></span>
+<span class="giallo-l"></span>
+<span class="giallo-l"><span style="color: #CBA6F7;">if</span><span> (x </span><span style="color: #94E2D5;">&gt;</span><span style="color: #FAB387;"> 3</span><span>)</span><span style="color: #94E2D5;"> &amp;&amp;</span><span> (x </span><span style="color: #94E2D5;">&lt;</span><span style="color: #FAB387;"> 6</span><span>)</span></span>
+<span class="giallo-l"><span style="color: #89B4FA;font-style: italic;">  println</span><span>(</span><span style="color: #A6E3A1;">&quot;True&quot;</span><span>)</span></span>
+<span class="giallo-l"><span style="color: #CBA6F7;">end</span></span></code></pre>
+<p>In strictly-typed languages, these expressions can only evaluate to a boolean, as is the case in the
+example above. However, Julia is a loosely-typed language, which affords it the ability to return
+the last value in this expression. This becomes a powerful tool for simplifying conditional
+statements, although some argue that it unnecessarily increases the complexity of the code. Below I
+show how you can convert the <code>if</code> statement above into a one-line short circuit expression.</p>
+<pre class="giallo" style="color: #CDD6F4; background-color: #1E1E2E;" ><code data-lang="julia"><span class="giallo-l"><span>x </span><span style="color: #94E2D5;">=</span><span style="color: #FAB387;"> 5</span></span>
+<span class="giallo-l"></span>
+<span class="giallo-l"><span>(x </span><span style="color: #94E2D5;">&gt;</span><span style="color: #FAB387;"> 3</span><span>)</span><span style="color: #94E2D5;"> &amp;&amp;</span><span> (x </span><span style="color: #94E2D5;">&lt;</span><span style="color: #FAB387;"> 6</span><span>)</span><span style="color: #94E2D5;"> &amp;&amp;</span><span style="color: #89B4FA;font-style: italic;"> println</span><span>(</span><span style="color: #A6E3A1;">&quot;True&quot;</span><span>)</span></span></code></pre>
+<p>This expression is equivalent to the <code>if</code> statement; as such, it only prints <code>True</code> if both
+conditionals are satisfied (in this case they are). Since both code blocks shown are equivalent, the
+choice for which to use comes down to personal preference (or the repo style guide). I personally
+find it convenient to use these statements for <code>continue</code> conditionals within loops.</p>
+<pre class="giallo" style="color: #CDD6F4; background-color: #1E1E2E;" ><code data-lang="julia"><span class="giallo-l"><span style="color: #CBA6F7;">for</span><span> i </span><span style="color: #94E2D5;">=</span><span style="color: #FAB387;"> 1</span><span style="color: #94E2D5;">:</span><span style="color: #FAB387;">10</span></span>
+<span class="giallo-l"><span>  i </span><span style="color: #94E2D5;">==</span><span style="color: #FAB387;"> 5</span><span style="color: #94E2D5;"> &amp;&amp;</span><span style="color: #CBA6F7;"> continue</span></span>
+<span class="giallo-l"><span style="color: #89B4FA;font-style: italic;">  println</span><span>(i)</span></span>
+<span class="giallo-l"><span style="color: #CBA6F7;">end</span></span></code></pre><h2 id="pipes">Pipes</h2>
+<p>If you are familiar with Bash scripting in Linux, then you will already be familiar with pipes. In
+Julia, the pipe operator is <code>|&gt;</code>. They can be used to redirect the output of something into another
+function. For example, if you have functions <code>foo</code> and <code>bar</code> such that you can run <code>bar(foo(x))</code>,
+then you can also rewrite this as <code>foo(x) |&gt; bar</code>. A handy use case for pipes is to avoid defining
+multiple temporary variables, while also avoiding hard-to-read nested calls.</p>
+<pre class="giallo" style="color: #CDD6F4; background-color: #1E1E2E;" ><code data-lang="julia"><span class="giallo-l"><span style="color: #89B4FA;font-style: italic;">foo</span><span>(x)</span><span style="color: #94E2D5;"> =</span><span style="color: #FAB387;"> 2</span><span style="color: #94E2D5;"> *</span><span style="color: #89B4FA;font-style: italic;"> sin</span><span>(x)</span></span>
+<span class="giallo-l"><span style="color: #89B4FA;font-style: italic;">bar</span><span>(x)</span><span style="color: #94E2D5;"> =</span><span style="color: #FAB387;"> 3</span><span style="color: #94E2D5;"> *</span><span> x</span><span style="color: #94E2D5;">^</span><span style="color: #FAB387;">2</span></span>
+<span class="giallo-l"></span>
+<span class="giallo-l"><span style="color: #9399B2;font-style: italic;"># Several tmp vars</span></span>
+<span class="giallo-l"><span>tmp1 </span><span style="color: #94E2D5;">=</span><span style="color: #89B4FA;font-style: italic;"> rand</span><span>()</span></span>
+<span class="giallo-l"><span>tmp2 </span><span style="color: #94E2D5;">=</span><span style="color: #89B4FA;font-style: italic;"> foo</span><span>(tmp1)</span></span>
+<span class="giallo-l"><span>x    </span><span style="color: #94E2D5;">=</span><span style="color: #89B4FA;font-style: italic;"> bar</span><span>(tmp2)</span></span>
+<span class="giallo-l"></span>
+<span class="giallo-l"><span style="color: #9399B2;font-style: italic;"># Multiple nested calls</span></span>
+<span class="giallo-l"><span>x </span><span style="color: #94E2D5;">=</span><span style="color: #89B4FA;font-style: italic;"> bar</span><span>(</span><span style="color: #89B4FA;font-style: italic;">foo</span><span>(</span><span style="color: #89B4FA;font-style: italic;">rand</span><span>()))</span></span>
+<span class="giallo-l"></span>
+<span class="giallo-l"><span style="color: #9399B2;font-style: italic;"># One clean easy to read line</span></span>
+<span class="giallo-l"><span>x </span><span style="color: #94E2D5;">=</span><span style="color: #89B4FA;font-style: italic;"> rand</span><span>()</span><span style="color: #94E2D5;"> |&gt;</span><span> foo </span><span style="color: #94E2D5;">|&gt;</span><span> bar</span></span></code></pre><h2 id="anonymous-functions">Anonymous Functions</h2>
+<p>An anonymous function is (as the name suggests) a function without a name. In Julia, these are done
+by using the <code>-&gt;</code> operator. A simple <code>f(x) = 2 * x^2</code> function can be anonymized as <code>x -&gt; 2 * x^2</code>;
+however, this example does not properly showcase the value of these anonymous functions. Although
+they can be used in numerous ways, they are most often used in two ways.</p>
+<ol>
+<li>Alongside pipes</li>
+</ol>
+<p>Sometimes you want to pipe output into a function that takes multiple arguments. In those cases, you
+need to couple a pipe and an anonymous function. The example below shows a simple version of this
+use case.</p>
+<pre class="giallo" style="color: #CDD6F4; background-color: #1E1E2E;" ><code data-lang="julia"><span class="giallo-l"><span style="color: #89B4FA;font-style: italic;">foo</span><span>(x)</span><span style="color: #94E2D5;">   =</span><span style="color: #FAB387;"> 6</span><span style="color: #94E2D5;"> *</span><span> x</span><span style="color: #94E2D5;">^</span><span style="color: #FAB387;">2</span></span>
+<span class="giallo-l"><span style="color: #89B4FA;font-style: italic;">bar</span><span>(x</span><span style="color: #9399B2;">,</span><span>y)</span><span style="color: #94E2D5;"> =</span><span> x</span><span style="color: #94E2D5;">^</span><span style="color: #FAB387;">2</span><span style="color: #94E2D5;"> -</span><span> y</span><span style="color: #94E2D5;">^</span><span style="color: #FAB387;">2</span></span>
+<span class="giallo-l"></span>
+<span class="giallo-l"><span>z </span><span style="color: #94E2D5;">=</span><span style="color: #89B4FA;font-style: italic;"> rand</span><span>()</span><span style="color: #94E2D5;"> |&gt;</span><span> foo </span><span style="color: #94E2D5;">|&gt;</span><span> (x </span><span style="color: #94E2D5;">-&gt;</span><span style="color: #89B4FA;font-style: italic;"> bar</span><span>(x</span><span style="color: #9399B2;">,</span><span style="color: #FAB387;"> 6</span><span>))</span></span></code></pre>
+<p>In this example the output of <code>foo</code> is piped into an anonymous function (<code>x -&gt; bar(x, 6)</code>) which
+passes the output into <code>bar</code> alongside an additional argument.</p>
+<ol start="2">
+<li>Within function calls</li>
+</ol>
+<p>Many built-in functions take an expression/function as an argument, for instance, <code>filter</code> and
+<code>find</code> take expressions that evaluate to booleans as arguments.</p>
+<pre class="giallo" style="color: #CDD6F4; background-color: #1E1E2E;" ><code data-lang="julia"><span class="giallo-l"><span>x </span><span style="color: #94E2D5;">=</span><span style="color: #89B4FA;font-style: italic;"> rand</span><span>(</span><span style="color: #FAB387;">50</span><span>)</span></span>
+<span class="giallo-l"></span>
+<span class="giallo-l"><span style="color: #89B4FA;font-style: italic;">filter</span><span>(e </span><span style="color: #94E2D5;">-&gt;</span><span> e </span><span style="color: #94E2D5;">&gt;</span><span style="color: #FAB387;"> 0.5</span><span style="color: #9399B2;">,</span><span> x)</span></span></code></pre>
+<p>The code block above uses the anonymous function <code>e -&gt; e &gt; 0.5</code> as the expression argument for
+<code>filter</code>, which in this case filters out the values larger than 0.5 from the array <code>x</code>.</p>
+<h2 id="base-functions-with-custom-types">Base Functions with Custom Types</h2>
+<p>This feature involves Julia's multiple dispatch, which is simply when multiple functions have the
+same name but different arguments. This allows you to write custom base functions for custom types.
+This is easier to understand through an example.</p>
+<pre class="giallo" style="color: #CDD6F4; background-color: #1E1E2E;" ><code data-lang="julia"><span class="giallo-l"><span style="color: #CBA6F7;">struct</span><span> Point{F</span><span style="color: #94E2D5;"> &lt;:</span><span style="color: #F9E2AF;font-style: italic;"> Float64</span><span>}</span></span>
+<span class="giallo-l"><span>  x</span><span style="color: #94E2D5;">::</span><span style="color: #F9E2AF;font-style: italic;">F</span></span>
+<span class="giallo-l"><span>  y</span><span style="color: #94E2D5;">::</span><span style="color: #F9E2AF;font-style: italic;">F</span></span>
+<span class="giallo-l"><span>  z</span><span style="color: #94E2D5;">::</span><span style="color: #F9E2AF;font-style: italic;">F</span></span>
+<span class="giallo-l"><span style="color: #CBA6F7;">end</span></span>
+<span class="giallo-l"></span>
+<span class="giallo-l"><span style="color: #CBA6F7;">function</span><span> Base</span><span style="color: #94E2D5;">.</span><span style="color: #89B4FA;font-style: italic;">show</span><span>(io</span><span style="color: #94E2D5;">::</span><span style="color: #F9E2AF;font-style: italic;">IO</span><span style="color: #9399B2;">,</span><span> point</span><span style="color: #94E2D5;">::</span><span style="color: #F9E2AF;font-style: italic;">Point</span><span>)</span></span>
+<span class="giallo-l"><span style="color: #89B4FA;font-style: italic;">  println</span><span>(io</span><span style="color: #9399B2;">,</span><span style="color: #A6E3A1;"> &quot;(x,y,z) = (</span><span>$(point</span><span style="color: #94E2D5;">.</span><span>x)</span><span style="color: #A6E3A1;">,</span><span>$(point</span><span style="color: #94E2D5;">.</span><span>y)</span><span style="color: #A6E3A1;">,</span><span>$(point</span><span style="color: #94E2D5;">.</span><span>z)</span><span style="color: #A6E3A1;">)&quot;</span><span>)</span></span>
+<span class="giallo-l"><span style="color: #CBA6F7;">end</span></span></code></pre>
+<p>The example above shows how to make a custom <code>show</code> function for a custom type <code>Point</code>. This is
+called "extending" the <code>show</code> function. This makes it so that when you display variables of the type
+<code>Point</code>, they will be displayed using the custom <code>show</code> function above. This means that when
+instantiating a variable <code>p = Point(1.0, 2.0, 3.0)</code> in the <code>repl</code>, the following output will be
+<code>(x,y,z) = (1.0,2.0,3.0)</code>.</p>
+<p>This can be done to all functions you have access to within your Julia code, even those from other
+imported packages. An important consideration here is to make sure you avoid "type piracy", where
+you extend a function on types that you did not define. For example,</p>
+<pre class="giallo" style="color: #CDD6F4; background-color: #1E1E2E;" ><code data-lang="julia"><span class="giallo-l"><span>Base</span><span style="color: #94E2D5;">.</span><span style="color: #89B4FA;font-style: italic;">show</span><span>(io</span><span style="color: #94E2D5;">::</span><span style="color: #F9E2AF;font-style: italic;">IO</span><span style="color: #9399B2;">,</span><span> f</span><span style="color: #94E2D5;">::</span><span style="color: #F9E2AF;font-style: italic;">Float64</span><span>)</span><span style="color: #94E2D5;"> =</span><span style="color: #89B4FA;font-style: italic;"> println</span><span>(io</span><span style="color: #9399B2;">,</span><span style="color: #A6E3A1;"> &quot;This is type piracy&quot;</span><span>)</span></span></code></pre>
+<p>extending <code>show</code> on the <code>Float64</code> type (which would not be extending but rather "redefining", since
+it already exists) is a case of type piracy. This is considered bad practice since it can cause
+unexpected behavior within your code, or someone else's code if they import your code.</p>
+
+  </div>
+
+  <footer class="single-post-footer">
+    <a href="https://Cavenfish.github.io/blog" class="post-btn-back">&larr; Back to all posts</a>
+  </footer>
+</article>
+
+
+    </main>
+    <hr>
+    <footer>
+      <p>Powered by <a href="https://www.getzola.org/">Zola</a> and <a href="https://github.com/mxaddict/zolanight">ZolaNight Theme</a></p>
+      
+    </footer>
+  </body>
+</html>
