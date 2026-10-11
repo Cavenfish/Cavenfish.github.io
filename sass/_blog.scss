@@ -46,30 +46,6 @@ ul.blog > li > article {
     opacity: 0;
     transition: opacity 0.2s ease;
   }
-
-  &:hover {
-    transform: translateY(-3px);
-    border-color: rgba(122, 162, 247, 0.45);
-    background-color: rgba(255, 255, 255, 0.05);
-    box-shadow: 0 10px 24px -5px rgba(0, 0, 0, 0.4);
-
-    &::before {
-      opacity: 1;
-    }
-
-    .post-card-title a,
-    h2 a {
-      color: var(--cyan-color);
-    }
-
-    .post-read-more {
-      color: var(--orange-color);
-
-      svg {
-        transform: translateX(3px);
-      }
-    }
-  }
 }
 
 .post-card-header {
@@ -176,7 +152,7 @@ ul.blog > li > article > p:last-child {
   gap: 0.4rem;
   font-size: 0.85rem;
   font-weight: 600;
-  color: var(--orange-color);
+  color: var(--pink-color);
   text-decoration: none;
   transition: color 0.15s ease;
 
@@ -239,7 +215,7 @@ ul.blog > li > article > p:last-child {
   display: inline-flex;
   align-items: center;
   gap: 0.4rem;
-  color: var(--orange-color);
+  color: var(--pink-color);
   text-decoration: none;
   font-size: 0.875rem;
   font-weight: 600;
@@ -250,9 +226,9 @@ ul.blog > li > article > p:last-child {
   transition: all 0.2s ease;
 
   &:hover {
-    background-color: var(--orange-color);
+    background-color: var(--pink-color);
     color: var(--bg-color);
-    border-color: var(--orange-color);
+    border-color: var(--pink-color);
     text-decoration: none;
   }
 }
@@ -350,16 +326,16 @@ main > nav > a {
   border-radius: 5px;
   border: 1px solid rgba(255, 158, 100, 0.35);
   background-color: rgba(255, 158, 100, 0.08);
-  color: var(--orange-color);
+  color: var(--pink-color);
   text-decoration: none;
   font-size: 0.875rem;
   font-weight: 600;
   transition: all 0.2s ease;
 
   &:hover {
-    background-color: var(--orange-color);
+    background-color: var(--pink-color);
     color: var(--bg-color);
-    border-color: var(--orange-color);
+    border-color: var(--pink-color);
     text-decoration: none;
   }
 }

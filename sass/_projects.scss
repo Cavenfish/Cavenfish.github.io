@@ -37,6 +37,11 @@
     box-shadow 0.2s ease,
     background-color 0.2s ease;
 
+  .project-tag {
+    color: var(--cyan-color);
+    border-color: rgba(125, 207, 255, 0.25);
+  }
+
   /* Subtle top accent bar that lights up on hover */
   &::before {
     content: "";
@@ -50,22 +55,6 @@
     transition: opacity 0.2s ease;
   }
 
-  &:hover {
-    transform: translateY(-4px);
-    border-color: rgba(125, 207, 255, 0.45);
-    background-color: rgba(255, 255, 255, 0.05);
-    box-shadow: 0 10px 24px -5px rgba(0, 0, 0, 0.4);
-
-    &::before {
-      opacity: 1;
-    }
-
-    .project-tag {
-      color: var(--cyan-color);
-      border-color: rgba(125, 207, 255, 0.25);
-    }
-  }
-
   &.featured {
     border-color: rgba(255, 158, 100, 0.35);
 
@@ -73,7 +62,7 @@
       opacity: 0.85;
       background: linear-gradient(
         90deg,
-        var(--orange-color),
+        var(--pink-color),
         var(--yellow-color)
       );
     }
@@ -115,7 +104,7 @@
 
 .badge-featured {
   background-color: rgba(255, 158, 100, 0.15);
-  color: var(--orange-color);
+  color: var(--pink-color);
   border: 1px solid rgba(255, 158, 100, 0.35);
 }
 
@@ -187,14 +176,14 @@
 }
 
 .project-btn-repo {
-  color: var(--orange-color);
+  color: var(--pink-color);
   background-color: rgba(255, 158, 100, 0.08);
-  border: 1px solid rgba(255, 158, 100, 0.35);
+  border: 1px solid rgba(213, 2, 255, 0.35);
 
   &:hover {
-    background-color: var(--orange-color);
+    background-color: var(--pink-color);
     color: var(--bg-color);
-    border-color: var(--orange-color);
+    border-color: var(--pink-color);
     text-decoration: none;
 
     svg {
@@ -217,31 +206,5 @@
     svg {
       stroke: var(--bg-color);
     }
-  }
-}
-
-/* Adaptations for light palettes (e.g. tokyoday, solarized-light, gruvbox-light) */
-.theme-tokyoday,
-.theme-gruvbox-light,
-.theme-solarized-light {
-  .project-card {
-    background-color: rgba(0, 0, 0, 0.03);
-    border-color: rgba(0, 0, 0, 0.12);
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
-
-    &:hover {
-      background-color: rgba(0, 0, 0, 0.05);
-      border-color: var(--cyan-color);
-      box-shadow: 0 8px 18px rgba(0, 0, 0, 0.12);
-    }
-  }
-
-  .project-tag {
-    background-color: rgba(0, 0, 0, 0.05);
-    border-color: rgba(0, 0, 0, 0.08);
-  }
-
-  .project-card-links {
-    border-top-color: rgba(0, 0, 0, 0.08);
   }
 }

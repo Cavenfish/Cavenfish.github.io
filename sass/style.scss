@@ -9,7 +9,7 @@
   --blue-color: #{map-get($palette, blue)};
   --cyan-color: #{map-get($palette, cyan)};
   --green-color: #{map-get($palette, green)};
-  --orange-color: #{map-get($palette, orange)};
+  --pink-color: #{map-get($palette, pink)};
   --red-color: #{map-get($palette, red)};
   --yellow-color: #{map-get($palette, yellow)};
   --magenta-color: #{map-get($palette, magenta)};
@@ -35,7 +35,7 @@ body {
 }
 
 a {
-  color: var(--orange-color);
+  color: var(--pink-color);
   text-decoration: underline;
 }
 
@@ -94,7 +94,7 @@ nav {
 }
 
 nav a {
-  color: var(--orange-color);
+  color: var(--pink-color);
 }
 
 nav a,
