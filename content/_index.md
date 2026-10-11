@@ -27,3 +27,7 @@ personally am also a big fan of pigeons. If I see a cute one, I can't help but t
 
 I'm also a big fan of specialty coffee! I love trying beans from different roasters and seeing how
 the different processing methods affect the flavor of the coffee.
+
+Since leaving the academic world, I've been enjoying creative writing more as a hobby. I'm sure this
+is because I've stopped writing research papers and that gave me more writing bandwidth which I've
+put toward blog posts.
