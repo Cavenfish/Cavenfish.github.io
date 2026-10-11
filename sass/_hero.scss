@@ -13,7 +13,11 @@
   margin: 1.5rem 0 2.5rem 0;
   position: relative;
   overflow: hidden;
-  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+  transition:
+    transform 0.2s ease,
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    background-color 0.2s ease;
 
   /* Sleek top accent line with theme gradient */
   &::before {
@@ -23,7 +27,12 @@
     left: 0;
     right: 0;
     height: 3px;
-    background: linear-gradient(90deg, var(--cyan-color), var(--blue-color), var(--magenta-color));
+    background: linear-gradient(
+      90deg,
+      var(--cyan-color),
+      var(--blue-color),
+      var(--magenta-color)
+    );
     opacity: 0.85;
     transition: opacity 0.2s ease;
   }
@@ -50,7 +59,12 @@
   height: 130px;
   border-radius: 50%;
   padding: 3px;
-  background: linear-gradient(135deg, var(--cyan-color), var(--blue-color), var(--magenta-color));
+  background: linear-gradient(
+    135deg,
+    var(--cyan-color),
+    var(--blue-color),
+    var(--magenta-color)
+  );
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
   transition: all 0.25s ease;
   display: flex;
