@@ -24,6 +24,7 @@ tagline = "Building robust automation software for next-generation spacecraft te
 projects_file = "projects.toml"
 github = "https://github.com/Cavenfish"
 linkedin = "https://www.linkedin.com/in/brian-ferrari-001b8a163/"
+footer_quote = "Everyone wants to build. No one wants to maintain."
 
 [extra.zolanight]
 theme = "tokyonight"               # Default theme, override as shown above
