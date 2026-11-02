@@ -1,6 +1,6 @@
 [[projects]]
 title = "Rejection Roulette"
-description = "A cross-pltform desktop app for tracking job applications."
+description = "A cross-platform desktop app for tracking job applications."
 repo = "https://github.com/Cavenfish/RejectionRoulette"
 tags = ["Rust", "Dioxus", "SQLite"]
 
