@@ -22,7 +22,7 @@
       </h2>
       {% if page.date %}
       <time class="post-card-date" datetime="{{ page.date | date(format="%Y-%m-%d") }}">
-        {{ page.date | date(format="%B %d, %Y") }}
+        {{ page.date | date(format="%Y/%m/%d") }}
       </time>
       {% endif %}
     </div>
@@ -49,9 +49,6 @@
           <polyline points="12 5 19 12 12 19"></polyline>
         </svg>
       </a>
-      {% if page.reading_time %}
-      <span class="post-reading-time">{{ page.reading_time }} min read</span>
-      {% endif %}
     </div>
   </div>
   {% endfor %}
